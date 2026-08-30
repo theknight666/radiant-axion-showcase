@@ -1,6 +1,7 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "axionis-growth-agency",
   "private": true,
+  "description": "Axionis Growth Agency official showcase",
   "sideEffects": false,
   "type": "module",
   "scripts": {
