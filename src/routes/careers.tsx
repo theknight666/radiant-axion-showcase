@@ -175,7 +175,7 @@ function CareersPage() {
             <div
               key={job.id}
               onClick={() => setSelectedJob(job)}
-              className="group cursor-pointer p-7 sm:p-8 rounded-[36px] bg-white border border-gray-200/90 shadow-[0_18px_40px_-15px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)] hover:-translate-y-1 transition-all duration-500 flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+              className="group cursor-pointer p-5 sm:p-8 rounded-[28px] sm:rounded-[36px] bg-white border border-gray-200/90 shadow-[0_18px_40px_-15px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)] hover:-translate-y-1 transition-all duration-500 flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6"
             >
               <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2.5">

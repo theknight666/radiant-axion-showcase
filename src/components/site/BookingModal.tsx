@@ -81,7 +81,7 @@ export function BookingModal({
   };
 
   return (
-    <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div className="fixed inset-0 z-[100000] flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       {/* Backdrop with frosted blur */}
       <div
         className="fixed inset-0 bg-black/75 backdrop-blur-md transition-opacity duration-300"
@@ -89,13 +89,13 @@ export function BookingModal({
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-2xl overflow-hidden rounded-[38px] bg-[#0E1015] border border-white/15 text-white shadow-[0_35px_90px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] z-10 my-auto animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-[28px] sm:rounded-[38px] bg-[#0E1015] border border-white/15 text-white shadow-[0_35px_90px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] z-10 my-auto animate-in fade-in zoom-in-95 duration-200">
         {/* Decorative background glow */}
         <div className="pointer-events-none absolute -top-32 -right-32 h-80 w-80 rounded-full bg-[#F26522]/25 blur-[90px]" />
         <div className="pointer-events-none absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-blue-600/15 blur-[90px]" />
 
         {/* Header */}
-        <div className="relative flex items-center justify-between border-b border-white/10 px-6 sm:px-8 py-5">
+        <div className="sticky top-0 z-20 flex items-center justify-between border-b border-white/10 bg-[#0E1015]/95 backdrop-blur-md px-5 sm:px-8 py-4 sm:py-5">
           <div className="flex items-center gap-3">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F26522]/20 text-[#F26522] shadow-inner">
               <Sparkles size={15} />

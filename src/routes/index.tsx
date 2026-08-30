@@ -194,14 +194,14 @@ function Index() {
             their category online.
           </h1>
 
-          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
+          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-5 max-w-lg sm:max-w-none">
             <button
               onClick={() => setIsBookingOpen(true)}
-              className={`group inline-flex items-center gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] sm:text-[14px] rounded-full pl-5 sm:pl-6 pr-2 py-2 shadow-[0_14px_30px_-6px_rgba(242,101,34,0.5),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-6px_rgba(242,101,34,0.65)] hover:-translate-y-1 transition-all duration-500 ${EASE}`}
+              className={`group inline-flex items-center justify-between sm:justify-start gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[14px] font-semibold rounded-full pl-6 pr-2 py-2.5 sm:py-2 shadow-[0_14px_30px_-6px_rgba(242,101,34,0.5),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-6px_rgba(242,101,34,0.65)] hover:-translate-y-1 transition-all duration-500 ${EASE}`}
             >
               <RollText label="Start a project" />
               <span
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm"
+                className="w-8 h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm"
               >
                 <ArrowRight size={14} className="text-[#F26522]" />
               </span>
@@ -209,10 +209,10 @@ function Index() {
 
             <button
               onClick={handlePartnerBadgeClick}
-              className="group inline-flex items-center gap-2 sm:gap-3 bg-white/90 backdrop-blur-md rounded-full px-4 sm:px-5 py-2.5 shadow-[0_10px_25px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 transition-all duration-500 cursor-pointer border border-black/[0.04]"
+              className="group inline-flex items-center justify-center sm:justify-start gap-2.5 sm:gap-3 bg-white/90 backdrop-blur-md rounded-full px-5 py-2.5 shadow-[0_10px_25px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 transition-all duration-500 cursor-pointer border border-black/[0.04]"
             >
               <PartnerIcon className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#E8704E]" />
-              <span className="text-[13px] sm:text-[14px] font-medium text-gray-900">
+              <span className="text-[13px] sm:text-[14px] font-semibold text-gray-900">
                 Certified Growth Partner
               </span>
               <span className="text-[10px] sm:text-[11px] bg-gray-900 text-white px-2.5 py-0.5 rounded-full font-semibold shadow-sm">

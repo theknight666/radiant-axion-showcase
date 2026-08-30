@@ -185,13 +185,13 @@ function ConnectPage() {
           </div>
 
           {/* Right Column: Interactive Form */}
-          <div className="p-8 sm:p-12 rounded-[38px] bg-white border border-gray-200/90 shadow-[0_18px_40px_-15px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)]">
+          <div className="p-6 sm:p-12 rounded-[32px] sm:rounded-[38px] bg-white border border-gray-200/90 shadow-[0_18px_40px_-15px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)]">
             {/* Tabs */}
-            <div className="flex items-center gap-2 p-1.5 rounded-full bg-gray-100 mb-8 max-w-sm border border-gray-200/60 shadow-inner">
+            <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-full bg-gray-100 mb-8 w-full sm:max-w-sm border border-gray-200/60 shadow-inner">
               <button
                 type="button"
                 onClick={() => setActiveTab("book")}
-                className={`flex-1 text-[13px] font-semibold py-2 rounded-full transition-all duration-300 ${
+                className={`flex-1 text-[12.5px] sm:text-[13px] font-semibold py-2 rounded-full transition-all duration-300 ${
                   activeTab === "book"
                     ? "bg-white text-gray-900 shadow-sm"
                     : "text-gray-600 hover:text-gray-900"
@@ -202,7 +202,7 @@ function ConnectPage() {
               <button
                 type="button"
                 onClick={() => setActiveTab("rfp")}
-                className={`flex-1 text-[13px] font-semibold py-2 rounded-full transition-all duration-300 ${
+                className={`flex-1 text-[12.5px] sm:text-[13px] font-semibold py-2 rounded-full transition-all duration-300 ${
                   activeTab === "rfp"
                     ? "bg-white text-gray-900 shadow-sm"
                     : "text-gray-600 hover:text-gray-900"

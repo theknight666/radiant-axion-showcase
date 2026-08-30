@@ -564,14 +564,14 @@ export function CtaSection({
             Book a 30-minute strategy call. You'll leave with a candid read on your biggest
             constraint — whether or not we work together.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 max-w-md sm:max-w-none">
             <button
               onClick={handleCall}
-              className={`group inline-flex items-center gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] sm:text-[14px] rounded-full pl-5 sm:pl-6 pr-2 py-2 shadow-[0_14px_30px_-6px_rgba(242,101,34,0.5),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-6px_rgba(242,101,34,0.65)] hover:-translate-y-0.5 transition-all duration-500 ${EASE}`}
+              className={`group inline-flex items-center justify-between sm:justify-start gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13.5px] sm:text-[14px] font-semibold rounded-full pl-6 pr-2 py-2.5 sm:py-2 shadow-[0_14px_30px_-6px_rgba(242,101,34,0.5),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-6px_rgba(242,101,34,0.65)] hover:-translate-y-0.5 transition-all duration-500 ${EASE}`}
             >
               <RollText label="Book a strategy call" />
               <span
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ${EASE} group-hover:-rotate-45 shadow-sm`}
+                className={`w-8 h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ${EASE} group-hover:-rotate-45 shadow-sm`}
               >
                 <ArrowRight size={14} className="text-[#F26522]" />
               </span>
@@ -579,11 +579,11 @@ export function CtaSection({
 
             <Link
               to="/projects"
-              className={`group inline-flex items-center gap-3 rounded-full liquid-glass pl-5 sm:pl-6 pr-2 py-2 text-[13px] sm:text-[14px] text-white transition-all duration-500 hover:-translate-y-0.5 ${EASE}`}
+              className={`group inline-flex items-center justify-between sm:justify-start gap-3 rounded-full liquid-glass pl-6 pr-2 py-2.5 sm:py-2 text-[13.5px] sm:text-[14px] font-medium text-white transition-all duration-500 hover:-translate-y-0.5 ${EASE}`}
             >
               <span className="h-[20px] leading-[20px]">See our work</span>
               <span
-                className={`flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white transition-transform duration-500 ${EASE} group-hover:-rotate-45 shadow-sm`}
+                className={`flex h-8 w-8 items-center justify-center rounded-full bg-white transition-transform duration-500 ${EASE} group-hover:-rotate-45 shadow-sm`}
               >
                 <ArrowRight size={14} className="text-gray-900" />
               </span>

@@ -136,9 +136,9 @@ function JournalPage() {
           </p>
         </div>
 
-        {/* Categories */}
-        <div className="mt-10 flex flex-wrap items-center gap-2.5 border-b border-gray-300/80 pb-4">
-          <span className="text-[12px] font-bold uppercase tracking-wider text-gray-400 mr-2 flex items-center gap-1.5">
+        {/* Categories — Swipeable on mobile */}
+        <div className="mt-8 sm:mt-10 flex items-center gap-2 sm:gap-2.5 overflow-x-auto pb-2 sm:pb-4 border-b border-gray-300/80 -mx-5 px-5 sm:mx-0 sm:px-0 sm:flex-wrap scrollbar-none">
+          <span className="text-[12px] font-bold uppercase tracking-wider text-gray-400 mr-1 sm:mr-2 flex items-center gap-1.5 shrink-0">
             <Search size={13} />
             Filter:
           </span>
@@ -146,10 +146,10 @@ function JournalPage() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`rounded-full px-5 py-2 text-[13px] font-semibold transition-all duration-300 ${
+              className={`shrink-0 rounded-full px-4 sm:px-5 py-2 text-[12.5px] sm:text-[13px] font-semibold transition-all duration-300 ${
                 selectedCategory === cat
                   ? "bg-gray-900 text-white shadow-[0_8px_20px_-4px_rgba(15,18,25,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)]"
-                  : "bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-white border border-gray-200 shadow-sm"
+                  : "bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-white border border-gray-200 shadow-sm"
               }`}
             >
               {cat}

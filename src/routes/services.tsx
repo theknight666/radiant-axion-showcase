@@ -162,30 +162,30 @@ function ServicesPage() {
       </section>
 
       {/* Services Breakdown Grid */}
-      <section className="bg-white py-16 sm:py-24 px-5 sm:px-8 lg:px-12">
-        <div className="max-w-[1440px] mx-auto space-y-12 sm:space-y-16">
+      <section className="bg-white py-14 sm:py-24 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-[1440px] mx-auto space-y-8 sm:space-y-16">
           {CAPABILITIES.map((cap) => (
             <div
               key={cap.title}
-              className="grid grid-cols-1 lg:grid-cols-[1.2fr_1.8fr] gap-8 lg:gap-12 p-8 sm:p-12 rounded-[38px] bg-[#FAFAFA] border border-gray-200/90 shadow-[0_18px_40px_-15px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)] hover:-translate-y-1 transition-all duration-500"
+              className="grid grid-cols-1 lg:grid-cols-[1.2fr_1.8fr] gap-6 lg:gap-12 p-6 sm:p-12 rounded-[32px] sm:rounded-[38px] bg-[#FAFAFA] border border-gray-200/90 shadow-[0_18px_40px_-15px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)] hover:-translate-y-1 transition-all duration-500"
             >
               <div>
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-900 text-white shadow-md">
-                    <cap.icon size={20} />
+                <div className="flex items-center gap-3 mb-4 sm:mb-5">
+                  <span className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-gray-900 text-white shadow-md">
+                    <cap.icon size={19} />
                   </span>
-                  <span className="text-[12px] font-bold uppercase tracking-wider text-[#F26522] bg-[#F26522]/10 px-3.5 py-1 rounded-full">
+                  <span className="text-[11.5px] sm:text-[12px] font-bold uppercase tracking-wider text-[#F26522] bg-[#F26522]/10 px-3.5 py-1 rounded-full">
                     {cap.badge}
                   </span>
                 </div>
-                <h2 className="text-[24px] sm:text-[28px] font-bold text-gray-900 tracking-tight">
+                <h2 className="text-[22px] sm:text-[28px] font-bold text-gray-900 tracking-tight">
                   {cap.title}
                 </h2>
-                <p className="mt-3 text-[16px] font-semibold text-gray-800 leading-snug">
+                <p className="mt-2.5 sm:mt-3 text-[15px] sm:text-[16px] font-semibold text-gray-800 leading-snug">
                   {cap.headline}
                 </p>
-                <p className="mt-4 text-[14px] text-gray-600 leading-relaxed font-normal">{cap.description}</p>
-                <div className="mt-7">
+                <p className="mt-3 sm:mt-4 text-[13.5px] sm:text-[14px] text-gray-600 leading-relaxed font-normal">{cap.description}</p>
+                <div className="mt-6 sm:mt-7">
                   <button
                     onClick={() => setIsBookingOpen(true)}
                     className="inline-flex items-center gap-2 text-[13px] font-bold text-[#F26522] hover:text-[#e05a1a] transition-colors"
@@ -201,11 +201,11 @@ function ServicesPage() {
                   <h4 className="text-[12px] font-bold uppercase tracking-wider text-gray-400 mb-3.5">
                     Core Deliverables & Outputs
                   </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                     {cap.deliverables.map((d) => (
                       <div
                         key={d}
-                        className="flex items-start gap-2.5 text-[13px] text-gray-700 bg-white p-3.5 rounded-full border border-gray-200/80 shadow-sm"
+                        className="flex items-start gap-2.5 text-[13px] text-gray-700 bg-white p-3 sm:p-3.5 rounded-full border border-gray-200/80 shadow-sm"
                       >
                         <Check size={14} className="text-[#F26522] mt-0.5 shrink-0" />
                         <span className="font-medium">{d}</span>
@@ -218,11 +218,11 @@ function ServicesPage() {
                   <h4 className="text-[12px] font-bold uppercase tracking-wider text-gray-400 mb-2.5">
                     Supported Technologies & Stack
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {cap.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[12px] font-semibold text-gray-700 bg-white px-3.5 py-1 rounded-full border border-gray-200 shadow-sm"
+                        className="text-[11.5px] sm:text-[12px] font-semibold text-gray-700 bg-white px-3 sm:px-3.5 py-1 rounded-full border border-gray-200 shadow-sm"
                       >
                         {t}
                       </span>
@@ -236,21 +236,21 @@ function ServicesPage() {
       </section>
 
       {/* Interactive Growth ROI Calculator */}
-      <section className="py-16 sm:py-24 px-5 sm:px-8 lg:px-12 max-w-[1440px] mx-auto">
+      <section className="py-14 sm:py-24 px-5 sm:px-8 lg:px-12 max-w-[1440px] mx-auto">
         <BadgeRow number="2" label="Interactive Forecasting" borderClass="border-gray-300" />
-        <div className="mb-10">
+        <div className="mb-8 sm:mb-10">
           <h2 className="text-[clamp(1.8rem,4.5vw,3.2rem)] font-medium leading-[1.1] tracking-[-0.02em] text-gray-900">
             Estimate your compounding
             <br />
             <span className="text-[#F26522]"> 12-month revenue uplift.</span>
           </h2>
-          <p className="mt-3 text-[15px] sm:text-[16px] text-gray-600 max-w-xl">
+          <p className="mt-3 text-[14.5px] sm:text-[16px] text-gray-600 max-w-xl">
             Adjust your current baseline numbers below to view projected pipeline acceleration
             modeled from our historical client cohort data.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-8 p-8 sm:p-12 rounded-[38px] bg-[#0E1015] text-white shadow-[0_35px_90px_-25px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] border border-white/10 relative overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-6 sm:gap-8 p-6 sm:p-12 rounded-[32px] sm:rounded-[38px] bg-[#0E1015] text-white shadow-[0_35px_90px_-25px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] border border-white/10 relative overflow-hidden">
           <div className="pointer-events-none absolute -top-32 -right-32 h-80 w-80 rounded-full bg-[#F26522]/20 blur-[100px]" />
 
           {/* Sliders */}

@@ -112,7 +112,7 @@ function PressPage() {
             {PRESS_RELEASES.map((item) => (
               <div
                 key={item.title}
-                className="p-8 rounded-[36px] bg-[#FAFAFA] border border-gray-200/90 shadow-[0_15px_35px_-12px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)] hover:-translate-y-1 transition-all duration-500 flex flex-col md:flex-row md:items-center justify-between gap-6"
+                className="p-6 sm:p-8 rounded-[28px] sm:rounded-[36px] bg-[#FAFAFA] border border-gray-200/90 shadow-[0_15px_35px_-12px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)] hover:-translate-y-1 transition-all duration-500 flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6"
               >
                 <div className="space-y-2 max-w-3xl">
                   <div className="flex items-center gap-3">
@@ -120,13 +120,13 @@ function PressPage() {
                     <span className="text-gray-300">•</span>
                     <span className="text-[12px] text-gray-500 font-medium">{item.date}</span>
                   </div>
-                  <h3 className="text-[20px] sm:text-[22px] font-bold text-gray-900 tracking-tight">
+                  <h3 className="text-[19px] sm:text-[22px] font-bold text-gray-900 tracking-tight">
                     {item.title}
                   </h3>
-                  <p className="text-[14px] text-gray-600 leading-relaxed font-normal">{item.summary}</p>
+                  <p className="text-[13.5px] sm:text-[14px] text-gray-600 leading-relaxed font-normal">{item.summary}</p>
                 </div>
 
-                <div className="shrink-0">
+                <div className="shrink-0 pt-2 md:pt-0">
                   <button
                     onClick={() => toast.info(`Viewing article on ${item.outlet}`)}
                     className="inline-flex items-center gap-2 text-[13px] font-semibold text-gray-900 hover:text-[#F26522] transition-colors"
@@ -142,34 +142,34 @@ function PressPage() {
       </section>
 
       {/* Brand Assets & Downloads */}
-      <section className="py-16 sm:py-24 px-5 sm:px-8 lg:px-12 max-w-[1440px] mx-auto">
+      <section className="py-14 sm:py-24 px-5 sm:px-8 lg:px-12 max-w-[1440px] mx-auto">
         <BadgeRow number="3" label="Brand Media Kit" borderClass="border-gray-300" />
-        <div className="mb-12">
+        <div className="mb-10 sm:mb-12">
           <h2 className="text-[clamp(1.8rem,4.5vw,3.2rem)] font-medium leading-[1.1] tracking-[-0.02em] text-gray-900">
             Downloadable Assets
           </h2>
-          <p className="mt-3 text-[15px] sm:text-[16px] text-gray-600">
+          <p className="mt-3 text-[14.5px] sm:text-[16px] text-gray-600">
             Approved vector logos, executive portraits, and typography tokens for editorial use.
           </p>
         </div>
 
         {/* Logo Preview showcase */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7 mb-10">
-          <div className="p-10 rounded-[38px] bg-white border border-gray-200/90 shadow-[0_18px_40px_-15px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] flex flex-col justify-between items-center text-center space-y-8">
-            <div className="py-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7 mb-8 sm:mb-10">
+          <div className="p-6 sm:p-10 rounded-[30px] sm:rounded-[38px] bg-white border border-gray-200/90 shadow-[0_18px_40px_-15px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] flex flex-col justify-between items-center text-center space-y-6 sm:space-y-8">
+            <div className="py-4 sm:py-6">
               <AxionisLogo variant="light" size="lg" showTagline={true} />
             </div>
-            <div className="w-full flex items-center justify-between pt-4 border-t border-gray-100 text-[13px] text-gray-500 font-medium">
+            <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-2 pt-4 border-t border-gray-100 text-[12.5px] sm:text-[13px] text-gray-500 font-medium">
               <span>Primary Dark Mark (Light Backgrounds)</span>
               <span className="text-[#F26522] font-semibold">SVG / PNG</span>
             </div>
           </div>
 
-          <div className="p-10 rounded-[38px] bg-[#0E1015] text-white shadow-[0_35px_90px_-25px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] border border-white/10 flex flex-col justify-between items-center text-center space-y-8">
-            <div className="py-6">
+          <div className="p-6 sm:p-10 rounded-[30px] sm:rounded-[38px] bg-[#0E1015] text-white shadow-[0_35px_90px_-25px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] border border-white/10 flex flex-col justify-between items-center text-center space-y-6 sm:space-y-8">
+            <div className="py-4 sm:py-6">
               <AxionisLogo variant="dark" size="lg" showTagline={true} />
             </div>
-            <div className="w-full flex items-center justify-between pt-4 border-t border-white/10 text-[13px] text-white/50 font-medium">
+            <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-2 pt-4 border-t border-white/10 text-[12.5px] sm:text-[13px] text-white/50 font-medium">
               <span>Inverted White Mark (Dark Backgrounds)</span>
               <span className="text-[#F26522] font-semibold">SVG / PNG</span>
             </div>
