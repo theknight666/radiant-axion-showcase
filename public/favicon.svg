@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="axGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E1015" />
+      <stop offset="100%" stop-color="#1A1D26" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7A38" />
+      <stop offset="100%" stop-color="#F26522" />
+    </linearGradient>
+  </defs>
+  <!-- Background Squircle with subtle 3D border -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#axGrad)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+  
+  <!-- Stylized Geometric "A" glyph -->
+  <path d="M32 14 L46 48 L39.5 48 L35.5 38 L28.5 38 L24.5 48 L18 48 Z M30.2 32.5 L33.8 32.5 L32 23.5 Z" fill="#FFFFFF" />
+  
+  <!-- Vibrant Orange Apex Accent Dot / Bar -->
+  <circle cx="32" cy="11.5" r="2.5" fill="url(#orangeGrad)" />
+  <rect x="26" y="34.5" width="12" height="3" rx="1.5" fill="url(#orangeGrad)" />
+</svg>

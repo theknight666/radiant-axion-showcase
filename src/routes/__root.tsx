@@ -77,14 +77,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Axionis Growth Agency — Senior-Led Growth & Conversion" },
+      {
+        name: "description",
+        content:
+          "Axionis is a senior-led growth agency based in India engineering compounding revenue, performance media, and high-conversion web systems.",
+      },
+      { name: "author", content: "Axionis Growth Agency" },
+      { property: "og:title", content: "Axionis Growth Agency" },
+      {
+        property: "og:description",
+        content:
+          "Category-defining growth architecture, full-funnel media scaling, and conversion systems.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@AxionisAgency" },
     ],
     links: [
       {
@@ -104,7 +112,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "alternate icon", href: "/favicon.ico" },
     ],
   }),
   shellComponent: RootShell,
