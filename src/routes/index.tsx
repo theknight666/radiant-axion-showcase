@@ -80,6 +80,11 @@ function BadgeRow({
   );
 }
 
+const SMALL_IMG =
+  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80";
+const LARGE_IMG =
+  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80";
+
 const HOME_PROJECTS: Record<string, CaseStudyData> = {
   narrativ: {
     id: "narrativ",

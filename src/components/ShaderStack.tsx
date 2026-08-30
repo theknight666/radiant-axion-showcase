@@ -1,6 +1,34 @@
+import React, { Component, type ReactNode } from "react";
 import { ChromaFlow, FilmGrain, FlutedGlass, Shader, Swirl } from "shaders/react";
 
-export default function ShaderStack() {
+class ShaderErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: unknown) {
+    console.warn("Shader WebGPU fallback activated:", error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div
+          className="w-full h-full bg-gradient-to-br from-white/40 via-orange-50/20 to-transparent"
+          style={{ width: "100%", height: "100%" }}
+        />
+      );
+    }
+    return this.props.children;
+  }
+}
+
+function RawShaderStack() {
   return (
     <Shader style={{ width: "100%", height: "100%" }}>
       <Swirl colorA="#ffffff" colorB="#f0f0f0" detail={1.7} />
@@ -27,5 +55,13 @@ export default function ShaderStack() {
       />
       <FilmGrain strength={0.05} />
     </Shader>
+  );
+}
+
+export default function ShaderStack() {
+  return (
+    <ShaderErrorBoundary>
+      <RawShaderStack />
+    </ShaderErrorBoundary>
   );
 }
