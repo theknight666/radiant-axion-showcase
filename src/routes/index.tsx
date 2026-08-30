@@ -2,6 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ClientOnly } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { ArrowRight, Clock, Menu, X } from "lucide-react";
+import {
+  CtaSection,
+  FaqSection,
+  MetricsSection,
+  PricingSection,
+  ProcessSection,
+  ServicesSection,
+  SiteFooter,
+  TestimonialsSection,
+} from "@/components/site/sections";
 
 const ShaderStack = lazy(() => import("@/components/ShaderStack"));
 
@@ -410,6 +420,15 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <MetricsSection />
+      <ServicesSection />
+      <ProcessSection />
+      <TestimonialsSection />
+      <PricingSection />
+      <FaqSection />
+      <CtaSection />
+      <SiteFooter />
     </main>
   );
 }
