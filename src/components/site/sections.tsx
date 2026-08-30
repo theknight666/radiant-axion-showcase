@@ -223,7 +223,7 @@ const QUOTES = [
   {
     quote:
       "Axion rebuilt our acquisition model in one quarter. We went from unpredictable months to a forecast the board actually trusts.",
-    name: "ElenaВарга",
+    name: "Elena Varga",
     role: "CMO, Northbeam Health",
   },
   {
