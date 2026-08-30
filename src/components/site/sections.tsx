@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   BarChart3,
@@ -14,7 +15,10 @@ import {
   Target,
   Zap,
 } from "lucide-react";
-import { BadgeRow, DarkButton, EASE, GlassCard, OrangeButton } from "./ui-bits";
+import { toast } from "sonner";
+import { BadgeRow, DarkButton, EASE, GlassCard, OrangeButton, RollText } from "./ui-bits";
+import { AxionisLogo } from "./AxionisLogo";
+import { BookingModal } from "./BookingModal";
 
 const SHELL = "max-w-[1440px] mx-auto";
 const PAD = "px-5 sm:px-8 lg:px-12";
@@ -41,13 +45,13 @@ export function MetricsSection() {
           Compounding outcomes,
           <br className="hidden sm:block" /> not vanity metrics.
         </h2>
-        <div className={`${PAD} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5`}>
+        <div className={`${PAD} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6`}>
           {METRICS.map((m) => (
-            <GlassCard key={m.value} className="p-6 sm:p-8">
-              <p className="text-[clamp(2rem,3.4vw,2.8rem)] font-medium tracking-[-0.03em] text-gray-900">
+            <GlassCard key={m.value} className="p-7 sm:p-9 rounded-[32px]">
+              <p className="text-[clamp(2.2rem,3.6vw,3rem)] font-bold tracking-[-0.03em] text-gray-900">
                 {m.value}
               </p>
-              <p className="mt-3 text-[13px] sm:text-[14px] leading-relaxed text-gray-600">
+              <p className="mt-3 text-[13.5px] sm:text-[14.5px] leading-relaxed text-gray-600 font-medium">
                 {m.label}
               </p>
             </GlassCard>
@@ -105,39 +109,53 @@ export function ServicesSection() {
       <div className={SHELL}>
         <BadgeRow number="4" label="What we do" />
         <div className={`${PAD} flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 sm:mb-14`}>
-          <h2 className="text-[clamp(1.6rem,4.4vw,3.4rem)] font-medium leading-[1.1] tracking-[-0.03em] text-gray-900">
-            One team for the entire
-            <br className="hidden sm:block" /> growth engine.
-          </h2>
-          <p className="max-w-[420px] text-[15px] sm:text-[16px] leading-relaxed text-gray-600">
-            Strategy, creative, media and data under one roof — so nothing gets lost between
-            agencies and every decision ladders to revenue.
-          </p>
+          <div>
+            <h2 className="text-[clamp(1.6rem,4.4vw,3.4rem)] font-medium leading-[1.1] tracking-[-0.03em] text-gray-900">
+              One team for the entire
+              <br className="hidden sm:block" /> growth engine.
+            </h2>
+          </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <p className="max-w-[420px] text-[15px] sm:text-[16px] leading-relaxed text-gray-600">
+              Strategy, creative, media and data under one roof — so nothing gets lost between
+              agencies and every decision ladders to revenue.
+            </p>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#F26522] hover:text-[#e05a1a] transition-colors whitespace-nowrap"
+            >
+              <span>Explore all capabilities</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
         </div>
 
-        <div className={`${PAD} grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5`}>
+        <div className={`${PAD} grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7`}>
           {SERVICES.map((s) => (
-            <div
+            <Link
               key={s.title}
-              className={`group relative overflow-hidden rounded-2xl border border-gray-200 bg-[#FAFAFA] p-7 sm:p-8 transition-all duration-500 ${EASE} hover:-translate-y-1 hover:border-gray-300 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)]`}
+              to="/services"
+              className={`group relative overflow-hidden rounded-[32px] border border-gray-200/90 bg-[#FAFAFA] p-8 sm:p-9 transition-all duration-500 ${EASE} hover:-translate-y-1.5 shadow-[0_15px_35px_-12px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)] block`}
             >
-              <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#F26522]/0 blur-3xl transition-all duration-700 group-hover:bg-[#F26522]/25" />
-              <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white">
-                <s.icon size={18} />
+              <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#F26522]/0 blur-3xl transition-all duration-700 group-hover:bg-[#F26522]/20" />
+              <span className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gray-900 text-white shadow-md">
+                <s.icon size={20} />
               </span>
-              <h3 className="relative mt-6 text-[18px] sm:text-[20px] font-medium tracking-[-0.02em] text-gray-900">
+              <h3 className="relative mt-7 text-[20px] font-semibold tracking-[-0.02em] text-gray-900 group-hover:text-[#F26522] transition-colors">
                 {s.title}
               </h3>
               <p className="relative mt-3 text-[14px] leading-relaxed text-gray-600">{s.copy}</p>
-              <ul className="relative mt-6 space-y-2">
+              <ul className="relative mt-7 space-y-2.5">
                 {s.items.map((i) => (
-                  <li key={i} className="flex items-center gap-2 text-[13px] text-gray-700">
-                    <Check size={14} className="text-[#F26522]" />
+                  <li key={i} className="flex items-center gap-2.5 text-[13px] text-gray-700 font-medium">
+                    <span className="h-5 w-5 rounded-full bg-[#F26522]/10 flex items-center justify-center shrink-0">
+                      <Check size={12} className="text-[#F26522]" />
+                    </span>
                     {i}
                   </li>
                 ))}
               </ul>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -180,10 +198,10 @@ export function ProcessSection() {
       <div className="pointer-events-none absolute inset-0 opacity-60 [background:radial-gradient(120%_80%_at_50%_-10%,rgba(242,101,34,0.35),transparent_60%)]" />
       <div className={`relative ${SHELL}`}>
         <div className={`${PAD} flex items-center gap-3 mb-6 sm:mb-8`}>
-          <span className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full bg-white text-[11px] sm:text-[12px] font-semibold text-gray-900">
+          <span className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full bg-white text-[11px] sm:text-[12px] font-semibold text-gray-900 shadow-sm">
             5
           </span>
-          <span className="rounded-full border border-white/20 px-3 sm:px-4 py-1 sm:py-1.5 text-[12px] sm:text-[13px] font-medium text-white/80">
+          <span className="rounded-full border border-white/20 px-3.5 sm:px-4 py-1 sm:py-1.5 text-[12px] sm:text-[13px] font-medium text-white/80 bg-white/5 backdrop-blur-md">
             How we work
           </span>
         </div>
@@ -193,22 +211,24 @@ export function ProcessSection() {
           A system, not a retainer
           <br className="hidden sm:block" /> full of good intentions.
         </h2>
-        <div className={`${PAD} grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5`}>
+        <div className={`${PAD} grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6`}>
           {STEPS.map((s) => (
             <div
               key={s.n}
-              className={`liquid-glass rounded-2xl p-7 sm:p-8 transition-transform duration-500 ${EASE} hover:-translate-y-1`}
+              className={`liquid-glass rounded-[32px] p-8 sm:p-9 transition-all duration-500 ${EASE} hover:-translate-y-1.5`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-[12px] font-semibold tracking-[0.2em] text-[#F26522]">
+                <span className="text-[12px] font-bold tracking-[0.2em] text-[#F26522] bg-[#F26522]/10 px-2.5 py-0.5 rounded-full">
                   {s.n}
                 </span>
-                <s.icon size={18} className="text-white/70" />
+                <span className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center">
+                  <s.icon size={16} className="text-white/80" />
+                </span>
               </div>
-              <h3 className="mt-8 text-[19px] font-medium tracking-[-0.02em] text-white">
+              <h3 className="mt-8 text-[20px] font-semibold tracking-[-0.02em] text-white">
                 {s.title}
               </h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-white/65">{s.copy}</p>
+              <p className="mt-3 text-[14px] leading-relaxed text-white/70">{s.copy}</p>
             </div>
           ))}
         </div>
@@ -222,7 +242,7 @@ export function ProcessSection() {
 const QUOTES = [
   {
     quote:
-      "Axion rebuilt our acquisition model in one quarter. We went from unpredictable months to a forecast the board actually trusts.",
+      "Axionis rebuilt our acquisition model in one quarter. We went from unpredictable months to a forecast the board actually trusts.",
     name: "Elena Varga",
     role: "CMO, Northbeam Health",
   },
@@ -251,19 +271,21 @@ export function TestimonialsSection() {
           Operators who bet on us,
           <br className="hidden sm:block" /> and won.
         </h2>
-        <div className={`${PAD} grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5`}>
+        <div className={`${PAD} grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7`}>
           {QUOTES.map((q) => (
             <figure
               key={q.name}
-              className={`flex h-full flex-col justify-between rounded-2xl border border-gray-200 bg-white p-7 sm:p-8 transition-all duration-500 ${EASE} hover:-translate-y-1 hover:shadow-[0_24px_60px_-32px_rgba(0,0,0,0.35)]`}
+              className={`flex h-full flex-col justify-between rounded-[32px] border border-gray-200/90 bg-white p-8 sm:p-9 transition-all duration-500 ${EASE} hover:-translate-y-1.5 shadow-[0_15px_35px_-12px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)]`}
             >
-              <Sparkles size={18} className="text-[#F26522]" />
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F26522]/10 text-[#F26522]">
+                <Sparkles size={18} />
+              </span>
               <blockquote className="mt-6 text-[16px] sm:text-[17px] leading-[1.55] font-medium tracking-[-0.01em] text-gray-900">
                 “{q.quote}”
               </blockquote>
-              <figcaption className="mt-8 border-t border-gray-200 pt-5">
-                <p className="text-[14px] font-semibold text-gray-900">{q.name}</p>
-                <p className="text-[13px] text-gray-500">{q.role}</p>
+              <figcaption className="mt-8 border-t border-gray-100 pt-5">
+                <p className="text-[14.5px] font-bold text-gray-900">{q.name}</p>
+                <p className="text-[13px] text-gray-500 font-medium">{q.role}</p>
               </figcaption>
             </figure>
           ))}
@@ -308,7 +330,21 @@ const PLANS = [
   },
 ];
 
-export function PricingSection() {
+export function PricingSection({
+  onSelectPlan,
+}: {
+  onSelectPlan?: (planName: string) => void;
+}) {
+  const [modalPlan, setModalPlan] = useState<string | null>(null);
+
+  const handleAction = (planName: string) => {
+    if (onSelectPlan) {
+      onSelectPlan(planName);
+    } else {
+      setModalPlan(planName);
+    }
+  };
+
   return (
     <section id="pricing" className="bg-white py-16 sm:py-20 lg:py-28">
       <div className={SHELL}>
@@ -324,35 +360,35 @@ export function PricingSection() {
           </p>
         </div>
 
-        <div className={`${PAD} grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 items-start`}>
+        <div className={`${PAD} grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7 items-start`}>
           {PLANS.map((p) => (
             <div
               key={p.name}
-              className={`relative overflow-hidden rounded-2xl p-7 sm:p-9 transition-all duration-500 ${EASE} hover:-translate-y-1 ${
+              className={`relative overflow-hidden rounded-[36px] p-8 sm:p-10 transition-all duration-500 ${EASE} hover:-translate-y-1.5 ${
                 p.featured
-                  ? "bg-[#0E1015] text-white shadow-[0_40px_90px_-45px_rgba(0,0,0,0.8)]"
-                  : "border border-gray-200 bg-[#FAFAFA]"
+                  ? "bg-[#0E1015] text-white shadow-[0_35px_80px_-25px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.25)] border border-white/10"
+                  : "border border-gray-200/90 bg-[#FAFAFA] shadow-[0_15px_35px_-12px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)]"
               }`}
             >
               {p.featured && (
                 <>
                   <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#F26522]/35 blur-[90px]" />
-                  <span className="relative inline-flex rounded-full bg-[#F26522] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em]">
+                  <span className="relative inline-flex rounded-full bg-[#F26522] px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] shadow-sm">
                     Most chosen
                   </span>
                 </>
               )}
               <h3
-                className={`relative ${p.featured ? "mt-5" : ""} text-[19px] font-medium tracking-[-0.02em]`}
+                className={`relative ${p.featured ? "mt-5" : ""} text-[22px] font-bold tracking-[-0.02em]`}
               >
                 {p.name}
               </h3>
               <div className="relative mt-5 flex items-end gap-2">
-                <span className="text-[clamp(2rem,3.4vw,2.8rem)] font-medium tracking-[-0.03em]">
+                <span className="text-[clamp(2.2rem,3.6vw,3rem)] font-bold tracking-[-0.03em]">
                   {p.price}
                 </span>
                 <span
-                  className={`pb-2 text-[13px] ${p.featured ? "text-white/60" : "text-gray-500"}`}
+                  className={`pb-2 text-[13px] font-medium ${p.featured ? "text-white/60" : "text-gray-500"}`}
                 >
                   {p.cadence}
                 </span>
@@ -362,28 +398,51 @@ export function PricingSection() {
               >
                 {p.copy}
               </p>
-              <ul className="relative mt-7 space-y-3">
+              <ul className="relative mt-8 space-y-3">
                 {p.items.map((i) => (
                   <li
                     key={i}
-                    className={`flex items-center gap-2 text-[13px] ${p.featured ? "text-white/85" : "text-gray-700"}`}
+                    className={`flex items-center gap-2.5 text-[13px] font-medium ${p.featured ? "text-white/85" : "text-gray-700"}`}
                   >
-                    <Check size={14} className="text-[#F26522]" />
+                    <span className="h-5 w-5 rounded-full bg-[#F26522]/10 flex items-center justify-center shrink-0">
+                      <Check size={12} className="text-[#F26522]" />
+                    </span>
                     {i}
                   </li>
                 ))}
               </ul>
-              <div className="relative mt-9">
-                {p.featured ? (
-                  <OrangeButton label="Book a strategy call" />
-                ) : (
-                  <DarkButton label="Enquire" />
-                )}
+              <div className="relative mt-10">
+                <button
+                  onClick={() => handleAction(p.name)}
+                  className={`group w-full inline-flex items-center justify-between text-[13px] sm:text-[14px] font-medium rounded-full pl-6 pr-2 py-2.5 transition-all duration-300 ${
+                    p.featured
+                      ? "bg-[#F26522] hover:bg-[#e05a1a] text-white shadow-[0_12px_24px_-4px_rgba(242,101,34,0.4)]"
+                      : "bg-gray-900 hover:bg-black text-white shadow-md"
+                  }`}
+                >
+                  <RollText label={p.featured ? "Book a strategy call" : "Enquire about plan"} />
+                  <span
+                    className={`w-8 h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ${EASE} group-hover:-rotate-45 shadow-sm`}
+                  >
+                    <ArrowRight
+                      size={14}
+                      className={p.featured ? "text-[#F26522]" : "text-gray-900"}
+                    />
+                  </span>
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {modalPlan && (
+        <BookingModal
+          isOpen={Boolean(modalPlan)}
+          initialPlan={modalPlan}
+          onClose={() => setModalPlan(null)}
+        />
+      )}
     </section>
   );
 }
@@ -401,7 +460,7 @@ const FAQS = [
   },
   {
     q: "What size of company do you work best with?",
-    a: "Brands between £3M and £150M in revenue with a product that already has proof of demand. We are not the right partner for pre-product-market-fit experiments.",
+    a: "Brands between ₹30Cr and ₹1,500Cr in revenue with a product that already has proof of demand. We are not the right partner for pre-product-market-fit experiments.",
   },
   {
     q: "Is media spend included in the retainer?",
@@ -424,22 +483,27 @@ export function FaqSection() {
             Things founders
             <br className="hidden sm:block" /> ask us first.
           </h2>
-          <div className="divide-y divide-gray-300 border-y border-gray-300">
+          <div className="space-y-4">
             {FAQS.map((f, i) => {
               const isOpen = open === i;
               return (
-                <div key={f.q}>
+                <div
+                  key={f.q}
+                  className="rounded-[28px] bg-white border border-gray-200/90 shadow-[0_8px_20px_-8px_rgba(0,0,0,0.04),inset_0_1px_1px_rgba(255,255,255,1)] overflow-hidden transition-all duration-300"
+                >
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between gap-6 py-5 text-left"
+                    className="flex w-full items-center justify-between gap-6 p-6 sm:p-7 text-left"
                     aria-expanded={isOpen}
                   >
-                    <span className="text-[15px] sm:text-[17px] font-medium tracking-[-0.01em] text-gray-900">
+                    <span className="text-[15px] sm:text-[17px] font-semibold tracking-[-0.01em] text-gray-900">
                       {f.q}
                     </span>
                     <span
-                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-400/60 transition-colors duration-500 ${EASE} ${
-                        isOpen ? "bg-gray-900 text-white" : "text-gray-900"
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                        isOpen
+                          ? "bg-gray-900 text-white shadow-sm"
+                          : "bg-gray-100 text-gray-900 hover:bg-gray-200"
                       }`}
                     >
                       {isOpen ? <Minus size={14} /> : <ChevronDown size={14} />}
@@ -451,7 +515,7 @@ export function FaqSection() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="pb-6 pr-12 text-[14px] sm:text-[15px] leading-relaxed text-gray-600">
+                      <p className="px-6 sm:px-7 pb-6 sm:pb-7 text-[14px] sm:text-[15px] leading-relaxed text-gray-600">
                         {f.a}
                       </p>
                     </div>
@@ -468,16 +532,27 @@ export function FaqSection() {
 
 /* ------------------------------------ CTA ----------------------------------- */
 
-export function CtaSection() {
+export function CtaSection({
+  onBookCall,
+}: {
+  onBookCall?: () => void;
+}) {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleCall = () => {
+    if (onBookCall) onBookCall();
+    else setModalOpen(true);
+  };
+
   return (
     <section id="contact" className="bg-white px-5 sm:px-8 lg:px-12 py-10 sm:py-14 lg:py-20">
       <div
-        className={`${SHELL} relative overflow-hidden rounded-[28px] bg-[#0E1015] px-6 sm:px-12 lg:px-16 py-14 sm:py-20 lg:py-28`}
+        className={`${SHELL} relative overflow-hidden rounded-[38px] bg-[#0E1015] px-6 sm:px-12 lg:px-16 py-14 sm:py-20 lg:py-28 shadow-[0_35px_90px_-25px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.2)] border border-white/10`}
       >
         <div className="pointer-events-none absolute -left-24 -top-24 h-[380px] w-[380px] rounded-full bg-[#F26522]/40 blur-[120px]" />
         <div className="pointer-events-none absolute -bottom-32 -right-20 h-[380px] w-[380px] rounded-full bg-white/10 blur-[120px]" />
         <div className="relative max-w-[760px]">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-1.5 text-[12px] font-medium text-white/80">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-1.5 text-[12px] font-medium text-white/80 bg-white/5 backdrop-blur-md">
             <span className="h-1.5 w-1.5 rounded-full bg-[#F26522]" />
             Two partner slots left for Q1 2026
           </span>
@@ -490,20 +565,34 @@ export function CtaSection() {
             constraint — whether or not we work together.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <OrangeButton label="Book a strategy call" />
             <button
-              className={`group inline-flex items-center gap-3 rounded-full liquid-glass pl-5 sm:pl-6 pr-2 py-2 text-[13px] sm:text-[14px] text-white transition-transform duration-500 ${EASE}`}
+              onClick={handleCall}
+              className={`group inline-flex items-center gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] sm:text-[14px] rounded-full pl-5 sm:pl-6 pr-2 py-2 shadow-[0_14px_30px_-6px_rgba(242,101,34,0.5),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-6px_rgba(242,101,34,0.65)] hover:-translate-y-0.5 transition-all duration-500 ${EASE}`}
+            >
+              <RollText label="Book a strategy call" />
+              <span
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ${EASE} group-hover:-rotate-45 shadow-sm`}
+              >
+                <ArrowRight size={14} className="text-[#F26522]" />
+              </span>
+            </button>
+
+            <Link
+              to="/projects"
+              className={`group inline-flex items-center gap-3 rounded-full liquid-glass pl-5 sm:pl-6 pr-2 py-2 text-[13px] sm:text-[14px] text-white transition-all duration-500 hover:-translate-y-0.5 ${EASE}`}
             >
               <span className="h-[20px] leading-[20px]">See our work</span>
               <span
-                className={`flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white transition-transform duration-500 ${EASE} group-hover:-rotate-45`}
+                className={`flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white transition-transform duration-500 ${EASE} group-hover:-rotate-45 shadow-sm`}
               >
                 <ArrowRight size={14} className="text-gray-900" />
               </span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
+
+      {modalOpen && <BookingModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />}
     </section>
   );
 }
@@ -511,31 +600,78 @@ export function CtaSection() {
 /* ----------------------------------- FOOTER --------------------------------- */
 
 const FOOTER_COLS = [
-  { title: "Studio", links: ["About", "Careers", "Journal", "Press"] },
-  { title: "Services", links: ["Growth strategy", "Performance media", "SEO & content", "Lifecycle"] },
-  { title: "Work", links: ["Narrativ", "Luminar", "Northbeam", "All case studies"] },
+  {
+    title: "Studio",
+    links: [
+      { label: "About", href: "/agency" },
+      { label: "Careers", href: "/careers" },
+      { label: "Journal", href: "/journal" },
+      { label: "Press", href: "/press" },
+    ],
+  },
+  {
+    title: "Services",
+    links: [
+      { label: "Growth strategy", href: "/services" },
+      { label: "Performance media", href: "/services" },
+      { label: "SEO & content", href: "/services" },
+      { label: "Lifecycle", href: "/services" },
+    ],
+  },
+  {
+    title: "Work",
+    links: [
+      { label: "Narrativ", href: "/projects" },
+      { label: "Luminar", href: "/projects" },
+      { label: "Northbeam", href: "/projects" },
+      { label: "All case studies", href: "/projects" },
+    ],
+  },
 ];
 
-export function SiteFooter() {
+export function SiteFooter({
+  onStartProject,
+}: {
+  onStartProject?: () => void;
+}) {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleStart = () => {
+    if (onStartProject) onStartProject();
+    else setModalOpen(true);
+  };
+
+  const handleSocial = (network: string) => {
+    toast.info(`Opening official Axionis Growth Agency ${network} channel`);
+  };
+
   return (
     <footer className="bg-[#0E1015] pt-16 sm:pt-20 pb-10">
       <div className={`${SHELL} ${PAD}`}>
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 lg:gap-8">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[11px] font-bold tracking-tight text-gray-900">
-                AX
-              </span>
-              <span className="text-[15px] font-medium text-white">Axion Studio</span>
-            </div>
+            <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
+              <AxionisLogo variant="dark" size="md" showTagline={true} />
+            </Link>
             <p className="mt-6 max-w-[320px] text-[14px] leading-relaxed text-white/60">
               A growth partner for brands ready to dominate their category — strategy, creative and
               media in one senior team.
             </p>
             <div className="mt-8">
-              <OrangeButton label="Start a project" />
+              <button
+                onClick={handleStart}
+                className={`group inline-flex items-center gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] sm:text-[14px] rounded-full pl-5 sm:pl-6 pr-2 py-2 shadow-[0_12px_28px_-6px_rgba(242,101,34,0.45),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-500 ${EASE}`}
+              >
+                <RollText label="Start a project" />
+                <span
+                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ${EASE} group-hover:-rotate-45 shadow-sm`}
+                >
+                  <ArrowRight size={14} className="text-[#F26522]" />
+                </span>
+              </button>
             </div>
           </div>
+
           {FOOTER_COLS.map((c) => (
             <div key={c.title}>
               <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/40">
@@ -543,36 +679,54 @@ export function SiteFooter() {
               </p>
               <ul className="mt-5 space-y-3">
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <a
-                      href="#"
-                      className="text-[14px] text-white/70 transition-colors duration-300 hover:text-white"
+                  <li key={l.label}>
+                    <Link
+                      to={l.href}
+                      className="text-[14px] text-white/70 transition-colors duration-300 hover:text-[#F26522]"
                     >
-                      {l}
-                    </a>
+                      {l.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
+
         <div className="mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-white/10 pt-6">
           <p className="text-[13px] text-white/45">
-            © {new Date().getFullYear()} Axion Studio. London & New York.
+            © {new Date().getFullYear()} Axionis Growth Agency. Bengaluru & Mumbai, India.
           </p>
           <div className="flex items-center gap-6">
-            {["Privacy", "Terms", "LinkedIn", "Instagram"].map((l) => (
-              <a
-                key={l}
-                href="#"
-                className="text-[13px] text-white/45 transition-colors duration-300 hover:text-white"
-              >
-                {l}
-              </a>
-            ))}
+            <Link
+              to="/privacy"
+              className="text-[13px] text-white/45 transition-colors duration-300 hover:text-white"
+            >
+              Privacy
+            </Link>
+            <Link
+              to="/terms"
+              className="text-[13px] text-white/45 transition-colors duration-300 hover:text-white"
+            >
+              Terms
+            </Link>
+            <button
+              onClick={() => handleSocial("LinkedIn")}
+              className="text-[13px] text-white/45 transition-colors duration-300 hover:text-[#F26522]"
+            >
+              LinkedIn
+            </button>
+            <button
+              onClick={() => handleSocial("Instagram")}
+              className="text-[13px] text-white/45 transition-colors duration-300 hover:text-[#F26522]"
+            >
+              Instagram
+            </button>
           </div>
         </div>
       </div>
+
+      {modalOpen && <BookingModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />}
     </footer>
   );
 }
