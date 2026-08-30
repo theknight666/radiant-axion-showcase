@@ -1,6 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Check, HeartHandshake, Laptop, Sparkles, Trophy, Users, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  HeartHandshake,
+  Laptop,
+  Sparkles,
+  Trophy,
+  Users,
+  Zap,
+} from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter, CtaSection } from "@/components/site/sections";
 import { BadgeRow, OrangeButton, RollText } from "@/components/site/ui-bits";
@@ -150,7 +159,9 @@ function CareersPage() {
                     <p.icon size={20} />
                   </span>
                   <h3 className="text-[18px] font-bold text-gray-900">{p.title}</h3>
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-gray-600 font-normal">{p.copy}</p>
+                  <p className="mt-2 text-[13.5px] leading-relaxed text-gray-600 font-normal">
+                    {p.copy}
+                  </p>
                 </div>
               </div>
             ))}
@@ -166,7 +177,8 @@ function CareersPage() {
             Open Squad Positions
           </h2>
           <p className="mt-3 text-[15px] sm:text-[16px] text-gray-600">
-            We are hiring across Bengaluru, Mumbai, Delhi NCR, and remotely across India and globally.
+            We are hiring across Bengaluru, Mumbai, Delhi NCR, and remotely across India and
+            globally.
           </p>
         </div>
 
@@ -192,7 +204,9 @@ function CareersPage() {
                 <h3 className="text-[20px] sm:text-[22px] font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
                   {job.title}
                 </h3>
-                <p className="text-[14px] text-gray-600 max-w-2xl leading-relaxed">{job.overview}</p>
+                <p className="text-[14px] text-gray-600 max-w-2xl leading-relaxed">
+                  {job.overview}
+                </p>
               </div>
 
               <div className="flex sm:items-center justify-between lg:flex-col lg:items-end gap-3 shrink-0 pt-4 lg:pt-0 border-t lg:border-t-0 border-gray-100">
@@ -202,7 +216,10 @@ function CareersPage() {
                   className="group-hover:bg-[#F26522] group-hover:text-white bg-gray-900 text-white text-[13px] font-semibold rounded-full px-5 py-2 transition-colors flex items-center gap-1.5 shadow-sm"
                 >
                   <span>Apply Now</span>
-                  <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight
+                    size={13}
+                    className="group-hover:translate-x-0.5 transition-transform"
+                  />
                 </button>
               </div>
             </div>

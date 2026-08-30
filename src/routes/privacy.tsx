@@ -36,10 +36,11 @@ function PrivacyPage() {
             <h2 className="text-[20px] font-bold text-gray-900 mb-3">1. Executive Summary</h2>
             <p>
               Axionis Growth Agency ("Axionis", "we", "us", or "our") respects your privacy and is
-              committed to protecting the personal data of our website visitors, clients, and partners.
-              This Privacy Policy explains how we collect, process, and safeguard information in
-              compliance with the Digital Personal Data Protection Act 2023 (DPDP Act, India), the
-              General Data Protection Regulation (GDPR), and applicable global data standards.
+              committed to protecting the personal data of our website visitors, clients, and
+              partners. This Privacy Policy explains how we collect, process, and safeguard
+              information in compliance with the Digital Personal Data Protection Act 2023 (DPDP
+              Act, India), the General Data Protection Regulation (GDPR), and applicable global data
+              standards.
             </p>
           </div>
 
@@ -51,7 +52,9 @@ function PrivacyPage() {
             </p>
             <ul className="list-disc pl-6 space-y-1.5 text-gray-600">
               <li>Contact details: Name, corporate email address, phone number.</li>
-              <li>Business data: Company website URL, current revenue stage, ad budget estimations.</li>
+              <li>
+                Business data: Company website URL, current revenue stage, ad budget estimations.
+              </li>
               <li>Recruitment data: Resumes, LinkedIn profiles, and portfolio submissions.</li>
               <li>Technical analytics: Anonymized page telemetry and interaction events.</li>
             </ul>

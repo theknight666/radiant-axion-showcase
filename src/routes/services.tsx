@@ -37,7 +37,8 @@ const CAPABILITIES = [
     icon: Compass,
     badge: "Strategy",
     title: "Growth Strategy & Commercial Positioning",
-    headline: "Aligning your product offer, pricing power, and distribution around one revenue metric.",
+    headline:
+      "Aligning your product offer, pricing power, and distribution around one revenue metric.",
     description:
       "We tear down your unit economics, customer lifetime value models, and competitive positioning to engineer an aggressive 12-month growth roadmap with deterministic milestones.",
     deliverables: [
@@ -67,7 +68,8 @@ const CAPABILITIES = [
     icon: Layers,
     badge: "Conversion",
     title: "Conversion Architecture & CRO",
-    headline: "High-speed WebGL showcases and frictionless landing page engines that maximize pipeline.",
+    headline:
+      "High-speed WebGL showcases and frictionless landing page engines that maximize pipeline.",
     description:
       "We build conversion-focused web systems, headless e-commerce flows, and interactive product calculators that lower blended CAC and lift lead-to-opportunity ratios.",
     deliverables: [
@@ -184,7 +186,9 @@ function ServicesPage() {
                 <p className="mt-2.5 sm:mt-3 text-[15px] sm:text-[16px] font-semibold text-gray-800 leading-snug">
                   {cap.headline}
                 </p>
-                <p className="mt-3 sm:mt-4 text-[13.5px] sm:text-[14px] text-gray-600 leading-relaxed font-normal">{cap.description}</p>
+                <p className="mt-3 sm:mt-4 text-[13.5px] sm:text-[14px] text-gray-600 leading-relaxed font-normal">
+                  {cap.description}
+                </p>
                 <div className="mt-6 sm:mt-7">
                   <button
                     onClick={() => setIsBookingOpen(true)}

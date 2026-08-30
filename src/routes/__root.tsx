@@ -77,6 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#0E1015" },
       { title: "Axionis Growth Agency — Senior-Led Growth & Conversion" },
       {
         name: "description",
@@ -84,15 +85,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Axionis is a senior-led growth agency based in India engineering compounding revenue, performance media, and high-conversion web systems.",
       },
       { name: "author", content: "Axionis Growth Agency" },
-      { property: "og:title", content: "Axionis Growth Agency" },
+      {
+        name: "robots",
+        content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      },
+      { property: "og:site_name", content: "Axionis Growth Agency" },
+      { property: "og:title", content: "Axionis Growth Agency — Senior-Led Growth & Conversion" },
       {
         property: "og:description",
         content:
           "Category-defining growth architecture, full-funnel media scaling, and conversion systems.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/og-image.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@AxionisAgency" },
+      { name: "twitter:image", content: "/og-image.png" },
     ],
     links: [
       {
@@ -113,6 +123,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { rel: "icon", href: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "alternate icon", href: "/favicon.ico" },
     ],
   }),
@@ -149,4 +163,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

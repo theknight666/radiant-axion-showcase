@@ -42,7 +42,7 @@ function useIndiaTime() {
           hour: "2-digit",
           minute: "2-digit",
           hour12: false,
-        }).format(new Date())
+        }).format(new Date()),
       );
     tick();
     const id = setInterval(tick, 1000);
@@ -123,7 +123,9 @@ function ConnectPage() {
                 </span>
                 <div>
                   <h3 className="text-[18px] font-bold text-gray-900">Direct Inquiries</h3>
-                  <p className="text-[12px] text-gray-500 font-medium">Guaranteed response within 4 hours</p>
+                  <p className="text-[12px] text-gray-500 font-medium">
+                    Guaranteed response within 4 hours
+                  </p>
                 </div>
               </div>
 
@@ -170,15 +172,23 @@ function ConnectPage() {
                   <p className="font-bold text-[#F26522] uppercase tracking-wider text-[11px]">
                     Bengaluru Flagship Studio
                   </p>
-                  <p className="font-medium text-white text-[15px] mt-0.5">100 Feet Road, Indiranagar</p>
-                  <p className="text-white/60 text-[13px] mt-0.5">Bengaluru, Karnataka 560038, India</p>
+                  <p className="font-medium text-white text-[15px] mt-0.5">
+                    100 Feet Road, Indiranagar
+                  </p>
+                  <p className="text-white/60 text-[13px] mt-0.5">
+                    Bengaluru, Karnataka 560038, India
+                  </p>
                 </div>
                 <div>
                   <p className="font-bold text-[#F26522] uppercase tracking-wider text-[11px]">
                     Mumbai Studio
                   </p>
-                  <p className="font-medium text-white text-[15px] mt-0.5">BKC One, Bandra Kurla Complex</p>
-                  <p className="text-white/60 text-[13px] mt-0.5">Mumbai, Maharashtra 400051, India</p>
+                  <p className="font-medium text-white text-[15px] mt-0.5">
+                    BKC One, Bandra Kurla Complex
+                  </p>
+                  <p className="text-white/60 text-[13px] mt-0.5">
+                    Mumbai, Maharashtra 400051, India
+                  </p>
                 </div>
               </div>
             </div>

@@ -1,6 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { ArrowRight, Award, CheckCircle2, Clock, Globe, MapPin, ShieldCheck, Sparkles, Users } from "lucide-react";
+import {
+  ArrowRight,
+  Award,
+  CheckCircle2,
+  Clock,
+  Globe,
+  MapPin,
+  ShieldCheck,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter, CtaSection } from "@/components/site/sections";
 import { BadgeRow, OrangeButton, RollText } from "@/components/site/ui-bits";
@@ -84,7 +94,7 @@ function useIndiaTime() {
           hour: "2-digit",
           minute: "2-digit",
           hour12: false,
-        }).format(new Date())
+        }).format(new Date()),
       );
     tick();
     const id = setInterval(tick, 1000);
@@ -139,7 +149,9 @@ function AgencyPage() {
                   <h3 className="mt-6 text-[20px] font-bold text-gray-900 tracking-tight">
                     {p.title}
                   </h3>
-                  <p className="mt-3 text-[14px] leading-relaxed text-gray-600 font-normal">{p.copy}</p>
+                  <p className="mt-3 text-[14px] leading-relaxed text-gray-600 font-normal">
+                    {p.copy}
+                  </p>
                 </div>
               </div>
             ))}
@@ -156,7 +168,8 @@ function AgencyPage() {
               The operators in your corner.
             </h2>
             <p className="mt-3 text-[15px] sm:text-[16px] text-gray-600 max-w-lg">
-              No middle managers. You work directly with specialists who own the strategy and execution.
+              No middle managers. You work directly with specialists who own the strategy and
+              execution.
             </p>
           </div>
         </div>

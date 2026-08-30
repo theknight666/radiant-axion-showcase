@@ -1,6 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Bookmark, Check, Clock, Mail, Search, Share2, Sparkles, TrendingUp } from "lucide-react";
+import {
+  ArrowRight,
+  Bookmark,
+  Check,
+  Clock,
+  Mail,
+  Search,
+  Share2,
+  Sparkles,
+  TrendingUp,
+} from "lucide-react";
 import { toast } from "sonner";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter, CtaSection } from "@/components/site/sections";
@@ -113,9 +123,7 @@ function JournalPage() {
   };
 
   const filteredArticles =
-    selectedCategory === "All"
-      ? ARTICLES
-      : ARTICLES.filter((a) => a.category === selectedCategory);
+    selectedCategory === "All" ? ARTICLES : ARTICLES.filter((a) => a.category === selectedCategory);
 
   return (
     <main className="min-h-screen bg-[#EFEFEF] text-gray-900 selection:bg-[#F26522] selection:text-white">
@@ -230,7 +238,10 @@ function JournalPage() {
                 <p className="text-[12.5px] text-gray-500 font-semibold">{article.author.name}</p>
                 <span className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#F26522]">
                   <span>Read Note</span>
-                  <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight
+                    size={13}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </span>
               </div>
             </div>

@@ -28,12 +28,7 @@ interface CaseStudyModalProps {
   onBookCall: () => void;
 }
 
-export function CaseStudyModal({
-  study,
-  isOpen,
-  onClose,
-  onBookCall,
-}: CaseStudyModalProps) {
+export function CaseStudyModal({ study, isOpen, onClose, onBookCall }: CaseStudyModalProps) {
   if (!isOpen || !study) return null;
 
   return (
@@ -80,11 +75,7 @@ export function CaseStudyModal({
                 className="w-full h-full object-cover"
               />
             ) : study.imageUrl ? (
-              <img
-                src={study.imageUrl}
-                alt={study.title}
-                className="w-full h-full object-cover"
-              />
+              <img src={study.imageUrl} alt={study.title} className="w-full h-full object-cover" />
             ) : null}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0E1015] via-transparent to-transparent opacity-80" />
             <div className="absolute bottom-5 left-6 right-6 flex items-end justify-between">
@@ -111,7 +102,9 @@ export function CaseStudyModal({
                     {m.change}
                   </span>
                 </div>
-                <p className="mt-3 text-[26px] font-extrabold text-white tracking-tight">{m.value}</p>
+                <p className="mt-3 text-[26px] font-extrabold text-white tracking-tight">
+                  {m.value}
+                </p>
               </div>
             ))}
           </div>

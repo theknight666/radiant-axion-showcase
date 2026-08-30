@@ -61,7 +61,9 @@ function TermsPage() {
           </div>
 
           <div>
-            <h2 className="text-[20px] font-bold text-gray-900 mb-3">4. Media Budget & Platform Direct Billing</h2>
+            <h2 className="text-[20px] font-bold text-gray-900 mb-3">
+              4. Media Budget & Platform Direct Billing
+            </h2>
             <p>
               Media budgets for platforms including Meta, Google, TikTok, and programmatic networks
               are funded directly by the client via their owned advertising accounts. Axionis never
@@ -70,7 +72,9 @@ function TermsPage() {
           </div>
 
           <div>
-            <h2 className="text-[20px] font-bold text-gray-900 mb-3">5. Governing Law & Jurisdiction</h2>
+            <h2 className="text-[20px] font-bold text-gray-900 mb-3">
+              5. Governing Law & Jurisdiction
+            </h2>
             <p>
               These Terms are governed by the laws of India, with exclusive jurisdiction in the
               competent courts of Bengaluru or Mumbai, India.

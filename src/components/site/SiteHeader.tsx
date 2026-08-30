@@ -27,7 +27,7 @@ function useIndiaTime() {
           hour: "2-digit",
           minute: "2-digit",
           hour12: false,
-        }).format(new Date())
+        }).format(new Date()),
       );
     tick();
     const id = setInterval(tick, 1000);

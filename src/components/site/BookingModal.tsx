@@ -19,13 +19,7 @@ const OBJECTIVES = [
   "Fractional CMO & Strategy",
 ];
 
-const TIME_SLOTS = [
-  "10:00 AM",
-  "11:30 AM",
-  "02:00 PM",
-  "03:30 PM",
-  "05:00 PM",
-];
+const TIME_SLOTS = ["10:00 AM", "11:30 AM", "02:00 PM", "03:30 PM", "05:00 PM"];
 
 const BUDGETS = [
   "₹5L - ₹10L / mo",
@@ -35,15 +29,10 @@ const BUDGETS = [
   "Sprint Diagnostic (One-off Audit)",
 ];
 
-export function BookingModal({
-  isOpen,
-  onClose,
-  initialPlan,
-  initialGoal,
-}: BookingModalProps) {
+export function BookingModal({ isOpen, onClose, initialPlan, initialGoal }: BookingModalProps) {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [selectedObjective, setSelectedObjective] = useState<string>(
-    initialPlan ? `${initialPlan} Engagement` : initialGoal || OBJECTIVES[0]
+    initialPlan ? `${initialPlan} Engagement` : initialGoal || OBJECTIVES[0],
   );
   const [selectedDate, setSelectedDate] = useState<string>("Tomorrow");
   const [selectedTime, setSelectedTime] = useState<string>("02:00 PM");
@@ -105,8 +94,8 @@ export function BookingModal({
                 {submitted
                   ? "Call Scheduled"
                   : initialPlan
-                  ? `Enquire: ${initialPlan} Plan`
-                  : "Book a 30-Min Strategy Call"}
+                    ? `Enquire: ${initialPlan} Plan`
+                    : "Book a 30-Min Strategy Call"}
               </h3>
               <p className="text-[12px] text-white/50">
                 {submitted

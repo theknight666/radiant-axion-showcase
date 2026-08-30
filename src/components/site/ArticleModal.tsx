@@ -25,12 +25,7 @@ interface ArticleModalProps {
   onBookCall?: () => void;
 }
 
-export function ArticleModal({
-  article,
-  isOpen,
-  onClose,
-  onBookCall,
-}: ArticleModalProps) {
+export function ArticleModal({ article, isOpen, onClose, onBookCall }: ArticleModalProps) {
   const [saved, setSaved] = useState(false);
 
   if (!isOpen || !article) return null;
@@ -74,7 +69,9 @@ export function ArticleModal({
             <button
               onClick={handleSave}
               className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
-                saved ? "bg-[#F26522] text-white shadow-sm" : "bg-white/5 hover:bg-white/10 text-white/70"
+                saved
+                  ? "bg-[#F26522] text-white shadow-sm"
+                  : "bg-white/5 hover:bg-white/10 text-white/70"
               }`}
               title="Bookmark article"
             >

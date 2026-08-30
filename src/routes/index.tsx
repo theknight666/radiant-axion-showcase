@@ -31,7 +31,10 @@ export const Route = createFileRoute("/")({
         content:
           "Axionis Growth Agency engineers high-velocity digital experiences and growth systems for category-leading brands.",
       },
-      { property: "og:title", content: "Axionis Growth Agency — Quantum Strategy & Revenue Scaling" },
+      {
+        property: "og:title",
+        content: "Axionis Growth Agency — Quantum Strategy & Revenue Scaling",
+      },
       {
         property: "og:description",
         content:
@@ -77,17 +80,13 @@ function BadgeRow({
   );
 }
 
-const SMALL_IMG =
-  "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.png&w=1280&q=85";
-const LARGE_IMG =
-  "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.png&w=1280&q=85";
-
 const HOME_PROJECTS: Record<string, CaseStudyData> = {
   narrativ: {
     id: "narrativ",
     title: "Narrativ",
     category: "SaaS & Tech",
-    tagline: "Winner of Site of the Month 2025 - an interactive 3D showcase driving record pipeline.",
+    tagline:
+      "Winner of Site of the Month 2025 - an interactive 3D showcase driving record pipeline.",
     summary:
       "Narrativ needed a digital experience that matched their category-defining technology. We redesigned their core web system and rebuilt their outbound acquisition funnel.",
     videoUrl:
@@ -182,9 +181,7 @@ function Index() {
             <span className="w-2 h-2 rounded-full bg-[#F26522]" />
             Axionis Growth Agency
           </p>
-          <h1
-            className="font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)]"
-          >
+          <h1 className="font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)]">
             We craft digital experiences
             <br className="hidden sm:block" />
             <span className="sm:hidden"> </span>
@@ -200,9 +197,7 @@ function Index() {
               className={`group inline-flex items-center justify-between sm:justify-start gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[14px] font-semibold rounded-full pl-6 pr-2 py-2.5 sm:py-2 shadow-[0_14px_30px_-6px_rgba(242,101,34,0.5),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-6px_rgba(242,101,34,0.65)] hover:-translate-y-1 transition-all duration-500 ${EASE}`}
             >
               <RollText label="Start a project" />
-              <span
-                className="w-8 h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm"
-              >
+              <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm">
                 <ArrowRight size={14} className="text-[#F26522]" />
               </span>
             </button>
@@ -246,9 +241,7 @@ function Index() {
                 className={`group inline-flex items-center gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] sm:text-[14px] rounded-full pl-5 sm:pl-6 pr-2 py-2 shadow-[0_12px_28px_-6px_rgba(242,101,34,0.45),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-500 ${EASE}`}
               >
                 <RollText label="About our agency" />
-                <span
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm"
-                >
+                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm">
                   <ArrowRight size={14} className="text-[#F26522]" />
                 </span>
               </Link>
@@ -292,9 +285,7 @@ function Index() {
                     className={`group inline-flex items-center gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] sm:text-[14px] rounded-full pl-5 sm:pl-6 pr-2 py-2 shadow-[0_12px_28px_-6px_rgba(242,101,34,0.45),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-500 ${EASE}`}
                   >
                     <RollText label="About our agency" />
-                    <span
-                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm"
-                    >
+                    <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm">
                       <ArrowRight size={14} className="text-[#F26522]" />
                     </span>
                   </Link>

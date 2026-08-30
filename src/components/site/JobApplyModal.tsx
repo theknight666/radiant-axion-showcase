@@ -184,7 +184,9 @@ export function JobApplyModal({ job, isOpen, onClose }: JobApplyModalProps) {
                   <Upload size={16} className="text-[#F26522]" />
                   <span>Resume upload optional (LinkedIn profile is sufficient)</span>
                 </div>
-                <span className="text-[11px] uppercase tracking-wider text-white/40">PDF / DOC</span>
+                <span className="text-[11px] uppercase tracking-wider text-white/40">
+                  PDF / DOC
+                </span>
               </div>
 
               <div className="mt-6 flex items-center justify-between pt-2">

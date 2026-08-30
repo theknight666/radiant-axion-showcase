@@ -1,6 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Download, ExternalLink, FileText, Image as ImageIcon, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Download,
+  ExternalLink,
+  FileText,
+  Image as ImageIcon,
+  Sparkles,
+} from "lucide-react";
 import { toast } from "sonner";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter, CtaSection } from "@/components/site/sections";
@@ -123,7 +130,9 @@ function PressPage() {
                   <h3 className="text-[19px] sm:text-[22px] font-bold text-gray-900 tracking-tight">
                     {item.title}
                   </h3>
-                  <p className="text-[13.5px] sm:text-[14px] text-gray-600 leading-relaxed font-normal">{item.summary}</p>
+                  <p className="text-[13.5px] sm:text-[14px] text-gray-600 leading-relaxed font-normal">
+                    {item.summary}
+                  </p>
                 </div>
 
                 <div className="shrink-0 pt-2 md:pt-0">
@@ -188,7 +197,9 @@ function PressPage() {
                   <Download size={18} />
                 </span>
                 <div>
-                  <h4 className="text-[15px] sm:text-[16px] font-bold text-gray-900">{asset.title}</h4>
+                  <h4 className="text-[15px] sm:text-[16px] font-bold text-gray-900">
+                    {asset.title}
+                  </h4>
                   <p className="text-[13px] text-gray-500 font-medium">
                     {asset.type} • {asset.size}
                   </p>

@@ -108,7 +108,9 @@ export function ServicesSection() {
     <section id="services" className="bg-white py-16 sm:py-20 lg:py-28">
       <div className={SHELL}>
         <BadgeRow number="4" label="What we do" />
-        <div className={`${PAD} flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 sm:mb-14`}>
+        <div
+          className={`${PAD} flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 sm:mb-14`}
+        >
           <div>
             <h2 className="text-[clamp(1.6rem,4.4vw,3.4rem)] font-medium leading-[1.1] tracking-[-0.03em] text-gray-900">
               One team for the entire
@@ -147,7 +149,10 @@ export function ServicesSection() {
               <p className="relative mt-3 text-[14px] leading-relaxed text-gray-600">{s.copy}</p>
               <ul className="relative mt-7 space-y-2.5">
                 {s.items.map((i) => (
-                  <li key={i} className="flex items-center gap-2.5 text-[13px] text-gray-700 font-medium">
+                  <li
+                    key={i}
+                    className="flex items-center gap-2.5 text-[13px] text-gray-700 font-medium"
+                  >
                     <span className="h-5 w-5 rounded-full bg-[#F26522]/10 flex items-center justify-center shrink-0">
                       <Check size={12} className="text-[#F26522]" />
                     </span>
@@ -325,16 +330,17 @@ const PLANS = [
     price: "Custom",
     cadence: "annual",
     copy: "Full-stack growth ownership for category leaders scaling across markets.",
-    items: ["Multi-market programmes", "In-house team enablement", "Exec advisory", "Priority creative studio"],
+    items: [
+      "Multi-market programmes",
+      "In-house team enablement",
+      "Exec advisory",
+      "Priority creative studio",
+    ],
     featured: false,
   },
 ];
 
-export function PricingSection({
-  onSelectPlan,
-}: {
-  onSelectPlan?: (planName: string) => void;
-}) {
+export function PricingSection({ onSelectPlan }: { onSelectPlan?: (planName: string) => void }) {
   const [modalPlan, setModalPlan] = useState<string | null>(null);
 
   const handleAction = (planName: string) => {
@@ -349,7 +355,9 @@ export function PricingSection({
     <section id="pricing" className="bg-white py-16 sm:py-20 lg:py-28">
       <div className={SHELL}>
         <BadgeRow number="7" label="Engagements" />
-        <div className={`${PAD} flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 sm:mb-14`}>
+        <div
+          className={`${PAD} flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 sm:mb-14`}
+        >
           <h2 className="text-[clamp(1.6rem,4.4vw,3.4rem)] font-medium leading-[1.1] tracking-[-0.03em] text-gray-900">
             Priced for outcomes,
             <br className="hidden sm:block" /> not hours logged.
@@ -532,11 +540,7 @@ export function FaqSection() {
 
 /* ------------------------------------ CTA ----------------------------------- */
 
-export function CtaSection({
-  onBookCall,
-}: {
-  onBookCall?: () => void;
-}) {
+export function CtaSection({ onBookCall }: { onBookCall?: () => void }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleCall = () => {
@@ -629,11 +633,7 @@ const FOOTER_COLS = [
   },
 ];
 
-export function SiteFooter({
-  onStartProject,
-}: {
-  onStartProject?: () => void;
-}) {
+export function SiteFooter({ onStartProject }: { onStartProject?: () => void }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleStart = () => {

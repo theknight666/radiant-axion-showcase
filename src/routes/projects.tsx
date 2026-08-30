@@ -21,7 +21,13 @@ export const Route = createFileRoute("/projects")({
   component: ProjectsPage,
 });
 
-const CATEGORIES = ["All", "Interactive Web", "Performance Media", "Conversion Architecture", "Brand & Motion"];
+const CATEGORIES = [
+  "All",
+  "Interactive Web",
+  "Performance Media",
+  "Conversion Architecture",
+  "Brand & Motion",
+];
 
 const PROJECTS_DATA: CaseStudyData[] = [
   {
