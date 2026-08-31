@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ClientOnly } from "@tanstack/react-router";
-import { lazy, Suspense, useEffect, useState } from "react";
-import { ArrowRight, Clock, Menu, Sparkles, X } from "lucide-react";
+import { lazy, Suspense, useState } from "react";
+import { ArrowRight, Sparkles, TrendingUp, ShieldCheck, Zap, Award } from "lucide-react";
 import { toast } from "sonner";
 import {
   CtaSection,
@@ -13,11 +13,14 @@ import {
   SiteFooter,
   TestimonialsSection,
 } from "@/components/site/sections";
-import { AxionisLogo, AxionisLogoIcon } from "@/components/site/AxionisLogo";
+import { AxionisLogo } from "@/components/site/AxionisLogo";
 import { AxionisPreloader } from "@/components/site/AxionisPreloader";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { BookingModal } from "@/components/site/BookingModal";
 import { CaseStudyModal, type CaseStudyData } from "@/components/site/CaseStudyModal";
+import { RoiCalculator } from "@/components/site/RoiCalculator";
+import { GrowthArchitecture } from "@/components/site/GrowthArchitecture";
+import { ComparisonMatrix } from "@/components/site/ComparisonMatrix";
 import { RollText } from "@/components/site/ui-bits";
 
 const ShaderStack = lazy(() => import("@/components/ShaderStack"));
@@ -25,20 +28,20 @@ const ShaderStack = lazy(() => import("@/components/ShaderStack"));
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Axionis Growth Agency — Quantum Strategy & Revenue Scaling" },
+      { title: "Axionis Growth Agency — Senior-Led Growth & Revenue Architecture" },
       {
         name: "description",
         content:
-          "Axionis Growth Agency engineers high-velocity digital experiences and growth systems for category-leading brands.",
+          "Axionis Growth Agency engineers category-defining digital experiences, performance media engines, and compounding revenue systems for global leaders.",
       },
       {
         property: "og:title",
-        content: "Axionis Growth Agency — Quantum Strategy & Revenue Scaling",
+        content: "Axionis Growth Agency — Senior-Led Growth & Revenue Architecture",
       },
       {
         property: "og:description",
         content:
-          "We engineer growth systems and digital experiences for brands ready to dominate online.",
+          "We craft high-velocity digital experiences and conversion systems for brands ready to dominate online.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -68,11 +71,11 @@ function BadgeRow({
 }) {
   return (
     <div className="px-5 sm:px-8 lg:px-12 flex items-center gap-3 mb-6 sm:mb-8">
-      <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] sm:text-[12px] font-semibold flex items-center justify-center">
+      <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#0E1015] text-white text-[11px] sm:text-[12px] font-bold flex items-center justify-center shadow-md">
         {number}
       </span>
       <span
-        className={`text-[12px] sm:text-[13px] font-medium border ${borderClass} rounded-full px-3 sm:px-4 py-1 sm:py-1.5`}
+        className={`text-[12px] sm:text-[13px] font-semibold border ${borderClass} rounded-full px-4 py-1.5 bg-white/80 backdrop-blur-md text-gray-800`}
       >
         {label}
       </span>
@@ -167,7 +170,7 @@ function Index() {
       {loading && <AxionisPreloader onComplete={() => setLoading(false)} />}
 
       {/* HERO */}
-      <section className="relative min-h-screen flex flex-col bg-[#EFEFEF] overflow-hidden">
+      <section className="relative min-h-[92vh] flex flex-col bg-[#EFEFEF] overflow-hidden">
         <div className="absolute inset-0 z-10 pointer-events-none">
           <ClientOnly fallback={null}>
             <Suspense fallback={null}>
@@ -181,12 +184,13 @@ function Index() {
 
         {/* HERO CONTENT */}
         <div className="flex-1" />
-        <div className="relative z-20 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 pb-14 sm:pb-16 lg:pb-20">
-          <p className="text-[13px] sm:text-[14px] text-[#F26522] font-semibold tracking-wider uppercase mb-5 sm:mb-8 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#F26522]" />
-            Axionis Growth Agency
-          </p>
-          <h1 className="font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)]">
+        <div className="relative z-20 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 pb-16 sm:pb-20 lg:pb-24">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-black/[0.06] bg-white/70 backdrop-blur-md px-4 py-1.5 text-[12.5px] text-gray-800 font-semibold mb-6 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#F26522] animate-pulse" />
+            <span>Senior-Led Growth & Revenue Architecture</span>
+          </div>
+
+          <h1 className="font-medium leading-[1.06] tracking-[-0.035em] text-gray-900 text-[clamp(2.1rem,7.5vw,4.8rem)]">
             We craft digital experiences
             <br className="hidden sm:block" />
             <span className="sm:hidden"> </span>
@@ -196,10 +200,10 @@ function Index() {
             their category online.
           </h1>
 
-          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-5 max-w-lg sm:max-w-none">
+          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 max-w-lg sm:max-w-none">
             <button
               onClick={() => setIsBookingOpen(true)}
-              className={`group inline-flex items-center justify-between sm:justify-start gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[14px] font-semibold rounded-full pl-6 pr-2 py-2.5 sm:py-2 shadow-[0_14px_30px_-6px_rgba(242,101,34,0.5),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:shadow-[0_20px_40px_-6px_rgba(242,101,34,0.65)] hover:-translate-y-1 transition-all duration-500 ${EASE}`}
+              className={`group inline-flex items-center justify-between sm:justify-start gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[14.5px] font-semibold rounded-full pl-7 pr-2.5 py-3 sm:py-2.5 shadow-[0_16px_32px_-6px_rgba(242,101,34,0.55),inset_0_1px_1.5px_rgba(255,255,255,0.45)] hover:shadow-[0_22px_44px_-6px_rgba(242,101,34,0.75)] hover:-translate-y-1 transition-all duration-500 ${EASE}`}
             >
               <RollText label="Start a project" />
               <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm">
@@ -209,25 +213,25 @@ function Index() {
 
             <button
               onClick={handlePartnerBadgeClick}
-              className="group inline-flex items-center justify-center sm:justify-start gap-2.5 sm:gap-3 bg-white/90 backdrop-blur-md rounded-full px-5 py-2.5 shadow-[0_10px_25px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 transition-all duration-500 cursor-pointer border border-black/[0.04]"
+              className="group inline-flex items-center justify-center sm:justify-start gap-3 bg-white/95 backdrop-blur-md rounded-full px-6 py-3 shadow-[0_10px_25px_rgba(0,0,0,0.06),inset_0_1px_1.5px_rgba(255,255,255,1)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 transition-all duration-500 cursor-pointer border border-black/[0.05]"
             >
               <PartnerIcon className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#E8704E]" />
-              <span className="text-[13px] sm:text-[14px] font-semibold text-gray-900">
-                Certified Growth Partner
+              <span className="text-[13.5px] sm:text-[14px] font-bold text-gray-900">
+                Tier-1 Certified Growth Partner
               </span>
-              <span className="text-[10px] sm:text-[11px] bg-gray-900 text-white px-2.5 py-0.5 rounded-full font-semibold shadow-sm">
-                Featured
+              <span className="text-[11px] bg-[#0E1015] text-white px-2.5 py-0.5 rounded-full font-semibold shadow-sm">
+                Meta • Google • Snowflake
               </span>
             </button>
           </div>
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section className="bg-white pt-16 sm:pt-20 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 overflow-hidden">
+      {/* ABOUT PREVIEW */}
+      <section className="bg-white pt-16 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 lg:pb-28 overflow-hidden">
         <div className="max-w-[1440px] mx-auto">
           <BadgeRow number="1" label="Introducing Axionis" borderClass="border-gray-200" />
-          <h2 className="px-5 sm:px-8 lg:px-12 text-[clamp(1.5rem,4vw,3.2rem)] font-medium leading-[1.12] tracking-[-0.02em] text-gray-900 mb-12 sm:mb-16 lg:mb-28">
+          <h2 className="px-5 sm:px-8 lg:px-12 text-[clamp(1.75rem,4.5vw,3.6rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 mb-12 sm:mb-16 lg:mb-24">
             Strategy-led creatives, delivering
             <br className="hidden sm:block" />
             <span className="sm:hidden"> </span>
@@ -236,17 +240,17 @@ function Index() {
 
           {/* mobile / tablet */}
           <div className="lg:hidden px-5 sm:px-8">
-            <p className="text-[15px] sm:text-[17px] leading-[1.6] font-medium text-gray-900">
-              Through research, creative thinking and iteration we help growing brands realize their
-              digital full potential.
+            <p className="text-[16px] leading-[1.6] font-medium text-gray-900">
+              Through research, creative thinking and rapid experiment cadences, we help growing
+              brands realize their full market potential.
             </p>
             <div className="mt-6">
               <Link
                 to="/agency"
-                className={`group inline-flex items-center gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] sm:text-[14px] rounded-full pl-5 sm:pl-6 pr-2 py-2 shadow-[0_12px_28px_-6px_rgba(242,101,34,0.45),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-500 ${EASE}`}
+                className={`group inline-flex items-center gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[14px] font-semibold rounded-full pl-6 pr-2 py-2 shadow-[0_12px_28px_-6px_rgba(242,101,34,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-500 ${EASE}`}
               >
                 <RollText label="About our agency" />
-                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm">
+                <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm">
                   <ArrowRight size={14} className="text-[#F26522]" />
                 </span>
               </Link>
@@ -268,7 +272,7 @@ function Index() {
           </div>
 
           {/* desktop */}
-          <div className="hidden lg:grid grid-cols-[26%_1fr_48%] items-end gap-6 xl:gap-8 px-5 sm:px-8 lg:px-12">
+          <div className="hidden lg:grid grid-cols-[28%_1fr_46%] items-end gap-8 px-5 sm:px-8 lg:px-12">
             <img
               src={SMALL_IMG}
               alt="Axionis Growth Agency team at work"
@@ -277,20 +281,17 @@ function Index() {
             />
             <div className="self-start flex justify-end">
               <div>
-                <p className="text-[16px] xl:text-[18px] leading-[1.65] font-medium text-gray-900 whitespace-nowrap">
-                  Through research, creative thinking and
-                  <br />
-                  iteration we help growing brands realize
-                  <br />
-                  their digital full potential.
+                <p className="text-[17px] xl:text-[18px] leading-[1.65] font-medium text-gray-900">
+                  Through deep research, high-velocity creative sprints and warehouse-level
+                  attribution, we scale growing brands into category leaders.
                 </p>
                 <div className="mt-8">
                   <Link
                     to="/agency"
-                    className={`group inline-flex items-center gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] sm:text-[14px] rounded-full pl-5 sm:pl-6 pr-2 py-2 shadow-[0_12px_28px_-6px_rgba(242,101,34,0.45),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-500 ${EASE}`}
+                    className={`group inline-flex items-center gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[14px] font-semibold rounded-full pl-6 pr-2 py-2 shadow-[0_12px_28px_-6px_rgba(242,101,34,0.5),inset_0_1px_1.5px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-500 ${EASE}`}
                   >
                     <RollText label="About our agency" />
-                    <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm">
+                    <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 group-hover:-rotate-45 shadow-sm">
                       <ArrowRight size={14} className="text-[#F26522]" />
                     </span>
                   </Link>
@@ -307,30 +308,30 @@ function Index() {
         </div>
       </section>
 
-      {/* CASE STUDIES */}
-      <section className="bg-[#F5F5F5] pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-28">
+      {/* FEATURED CASE STUDIES */}
+      <section className="bg-[#F5F5F7] pt-16 sm:pt-24 lg:pt-32 pb-16 sm:pb-24 lg:pb-32">
         <div className="max-w-[1440px] mx-auto">
           <BadgeRow number="2" label="Featured client work" borderClass="border-gray-300" />
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between px-5 sm:px-8 lg:px-12 mb-10 sm:mb-14 lg:mb-16 gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between px-5 sm:px-8 lg:px-12 mb-12 sm:mb-16 gap-4">
             <h2 className="text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900">
               Our projects
             </h2>
             <Link
               to="/projects"
-              className="inline-flex items-center gap-2 text-[14px] font-semibold text-[#F26522] hover:text-[#e05a1a] transition-colors"
+              className="inline-flex items-center gap-2 text-[14.5px] font-bold text-[#F26522] hover:text-[#e05a1a] transition-colors"
             >
               <span>View all case studies</span>
               <ArrowRight size={15} />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 px-5 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-5 sm:px-8 lg:px-12">
             {/* Narrativ Card */}
             <div
               onClick={() => setSelectedCaseStudy(HOME_PROJECTS.narrativ)}
-              className="cursor-pointer group rounded-[36px] bg-white p-3 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.14)] hover:-translate-y-1.5 transition-all duration-500 border border-black/[0.04]"
+              className="cursor-pointer group rounded-[38px] bg-white p-3.5 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.08),inset_0_1px_1.5px_rgba(255,255,255,1)] hover:shadow-[0_35px_75px_-15px_rgba(0,0,0,0.16)] hover:-translate-y-2 transition-all duration-500 border border-black/[0.04]"
             >
-              <div className="relative aspect-[329/246] rounded-[28px] overflow-hidden bg-[#1a1d2e] group cursor-pointer shadow-inner">
+              <div className="relative aspect-[329/246] rounded-[30px] overflow-hidden bg-[#1a1d2e] group cursor-pointer shadow-inner">
                 <video
                   src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260516_122702_390f5305-8719-41d5-ae80-d23ab3796c28.mp4"
                   autoPlay
@@ -339,6 +340,11 @@ function Index() {
                   playsInline
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold px-3 py-1 rounded-full">
+                  <Award size={12} className="text-[#F26522]" />
+                  Awwwards Site of the Month 2025
+                </div>
+
                 <div className="absolute bottom-4 left-4 h-10 w-10 group-hover:w-[154px] bg-white/95 backdrop-blur-md rounded-full flex items-center overflow-hidden shadow-lg transition-all duration-300 ease-in-out">
                   <span className="h-10 w-10 shrink-0 flex items-center justify-center">
                     <svg
@@ -356,28 +362,33 @@ function Index() {
                       <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
                     </svg>
                   </span>
-                  <span className="text-[13px] font-semibold text-gray-900 whitespace-nowrap pr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                  <span className="text-[13px] font-bold text-gray-900 whitespace-nowrap pr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                     Learn more
                   </span>
                 </div>
               </div>
-              <div className="p-4 sm:p-5">
-                <p className="text-[13px] sm:text-[14px] text-gray-600 leading-relaxed">
-                  Winner of Site of the Month 2025 - an interactive 3D showcase driving record
-                  engagement
+              <div className="p-5">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[19px] font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
+                    Narrativ
+                  </h3>
+                  <span className="text-[12px] font-semibold text-emerald-600 bg-emerald-500/10 px-3 py-1 rounded-full">
+                    +340% Pipeline Velocity
+                  </span>
+                </div>
+                <p className="text-[14px] text-gray-600 leading-relaxed mt-2">
+                  Winner of Site of the Month 2025 — an interactive WebGL showcase driving record
+                  contract velocity.
                 </p>
-                <h3 className="text-[16px] sm:text-[18px] font-bold text-gray-900 mt-2 group-hover:text-[#F26522] transition-colors">
-                  Narrativ
-                </h3>
               </div>
             </div>
 
             {/* Luminar Card */}
             <div
               onClick={() => setSelectedCaseStudy(HOME_PROJECTS.luminar)}
-              className="cursor-pointer group rounded-[36px] bg-white p-3 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.14)] hover:-translate-y-1.5 transition-all duration-500 border border-black/[0.04]"
+              className="cursor-pointer group rounded-[38px] bg-white p-3.5 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.08),inset_0_1px_1.5px_rgba(255,255,255,1)] hover:shadow-[0_35px_75px_-15px_rgba(0,0,0,0.16)] hover:-translate-y-2 transition-all duration-500 border border-black/[0.04]"
             >
-              <div className="relative aspect-[329/246] rounded-[28px] overflow-hidden bg-[#6b6b6b] group cursor-pointer shadow-inner">
+              <div className="relative aspect-[329/246] rounded-[30px] overflow-hidden bg-[#6b6b6b] group cursor-pointer shadow-inner">
                 <video
                   src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260516_123323_f909c2b8-ff6c-4edf-882b-8ebcdbe389b5.mp4"
                   autoPlay
@@ -386,6 +397,11 @@ function Index() {
                   playsInline
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold px-3 py-1 rounded-full">
+                  <TrendingUp size={12} className="text-[#F26522]" />
+                  +180% Incremental Revenue
+                </div>
+
                 <div className="absolute bottom-4 left-4 h-10 w-10 group-hover:w-[172px] bg-gray-900/95 backdrop-blur-md rounded-full flex items-center overflow-hidden shadow-lg transition-all duration-300 ease-in-out">
                   <span className="h-10 w-10 shrink-0 flex items-center justify-center">
                     <ArrowRight
@@ -393,31 +409,73 @@ function Index() {
                       className="text-white -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-in-out"
                     />
                   </span>
-                  <span className="text-[13px] font-semibold text-white whitespace-nowrap pr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                  <span className="text-[13px] font-bold text-white whitespace-nowrap pr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                     View case study
                   </span>
                 </div>
               </div>
-              <div className="p-4 sm:p-5">
-                <p className="text-[13px] sm:text-[14px] text-gray-600 leading-relaxed">
-                  Transforming a dated platform into a conversion-focused brand experience
+              <div className="p-5">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[19px] font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
+                    Luminar
+                  </h3>
+                  <span className="text-[12px] font-semibold text-emerald-600 bg-emerald-500/10 px-3 py-1 rounded-full">
+                    -38% Blended CAC
+                  </span>
+                </div>
+                <p className="text-[14px] text-gray-600 leading-relaxed mt-2">
+                  Transforming a legacy multi-step checkout into a frictionless headless luxury
+                  brand engine.
                 </p>
-                <h3 className="text-[16px] sm:text-[18px] font-bold text-gray-900 mt-2 group-hover:text-[#F26522] transition-colors">
-                  Luminar
-                </h3>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* INTERACTIVE ROI SIMULATOR */}
+      <section className="bg-white py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <RoiCalculator onBookCall={() => setIsBookingOpen(true)} />
+        </div>
+      </section>
+
+      {/* METRICS */}
       <MetricsSection />
+
+      {/* SERVICES */}
       <ServicesSection />
+
+      {/* INTERACTIVE GROWTH ARCHITECTURE */}
+      <section className="bg-[#F4F4F6] py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <GrowthArchitecture />
+        </div>
+      </section>
+
+      {/* PROCESS */}
       <ProcessSection />
+
+      {/* INTERACTIVE COMPARISON MATRIX */}
+      <section className="bg-white py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <ComparisonMatrix />
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
       <TestimonialsSection />
+
+      {/* PRICING */}
       <PricingSection onSelectPlan={(plan) => setIsBookingOpen(true)} />
+
+      {/* FAQ */}
       <FaqSection />
+
+      {/* CTA */}
       <CtaSection onBookCall={() => setIsBookingOpen(true)} />
+
+      {/* FOOTER */}
       <SiteFooter onStartProject={() => setIsBookingOpen(true)} />
 
       {/* Interactive Modals */}
