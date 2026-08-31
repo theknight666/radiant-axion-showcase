@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, Clock, Menu, Sparkles, Volume2, VolumeX, X } from "lucide-react";
 import { AxionisLogo } from "./AxionisLogo";
@@ -45,17 +45,85 @@ export function SiteHeader({ onBookCall, className = "" }: SiteHeaderProps) {
   const routerState = useRouterState();
   const currentPath = routerState.location.pathname;
 
+  // Liquid Water Droplet State
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
+  const [hoveredHref, setHoveredHref] = useState<string | null>(null);
+  const [dropletStyle, setDropletStyle] = useState<{
+    left: number;
+    width: number;
+    height: number;
+    opacity: number;
+    isMoving: boolean;
+  }>({
+    left: 0,
+    width: 0,
+    height: 0,
+    opacity: 0,
+    isMoving: false,
+  });
+
   useEffect(() => {
     return soundEngine.subscribe((val) => setSoundActive(val));
   }, []);
+
+  const targetHref =
+    hoveredHref ||
+    NAV_ITEMS.find(
+      (item) =>
+        currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href)),
+    )?.href ||
+    NAV_ITEMS[0].href;
+
+  // Recalculate droplet position on target change or window resize
+  useEffect(() => {
+    const updateDroplet = () => {
+      const container = navContainerRef.current;
+      const targetEl = itemRefs.current.get(targetHref);
+
+      if (container && targetEl) {
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = targetEl.getBoundingClientRect();
+
+        setDropletStyle((prev) => ({
+          left: targetRect.left - containerRect.left,
+          width: targetRect.width,
+          height: targetRect.height,
+          opacity: 1,
+          isMoving: true,
+        }));
+
+        const timer = setTimeout(() => {
+          setDropletStyle((prev) => ({ ...prev, isMoving: false }));
+        }, 400);
+
+        return () => clearTimeout(timer);
+      }
+    };
+
+    updateDroplet();
+    window.addEventListener("resize", updateDroplet);
+    return () => window.removeEventListener("resize", updateDroplet);
+  }, [targetHref, currentPath]);
 
   const handleToggleSound = () => {
     const next = soundEngine.toggle();
     setSoundActive(next);
   };
 
+  const handleItemHover = (href: string) => {
+    if (href !== targetHref) {
+      soundEngine.playDroplet();
+    }
+    setHoveredHref(href);
+  };
+
+  const handleItemLeave = () => {
+    setHoveredHref(null);
+  };
+
   const handleNavClick = () => {
-    soundEngine.playClick();
+    soundEngine.playDroplet();
   };
 
   return (
@@ -63,23 +131,64 @@ export function SiteHeader({ onBookCall, className = "" }: SiteHeaderProps) {
       <header className={`relative z-30 max-w-[1440px] mx-auto w-full p-2.5 sm:p-4 ${className}`}>
         <nav className="bg-white/85 backdrop-blur-xl rounded-full p-[6px] sm:px-6 flex items-center justify-between shadow-[0_20px_45px_-12px_rgba(0,0,0,0.08),inset_0_1px_1.5px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(0,0,0,0.03)] border border-black/[0.05] transition-all duration-300 hover:shadow-[0_25px_55px_-10px_rgba(0,0,0,0.12)]">
           <div className="flex items-center gap-7 lg:gap-10">
-            <Link to="/" onClick={handleNavClick} className="hover:opacity-90 transition-opacity">
+            <Link
+              to="/"
+              onClick={() => soundEngine.playClick()}
+              className="hover:opacity-90 transition-opacity"
+            >
               <AxionisLogo variant="light" size="sm" showTagline={true} />
             </Link>
-            <div className="hidden md:flex items-center gap-1 bg-gray-100/70 p-1 rounded-full border border-black/[0.04] backdrop-blur-sm">
+
+            {/* Desktop Navigation with Water Droplet Animation */}
+            <div
+              ref={navContainerRef}
+              onMouseLeave={handleItemLeave}
+              className="hidden md:flex items-center gap-1 bg-gray-100/75 p-1 rounded-full border border-black/[0.04] backdrop-blur-md relative select-none"
+            >
+              {/* LIQUID WATER DROPLET INDICATOR */}
+              <div
+                aria-hidden="true"
+                style={{
+                  transform: `translateX(${dropletStyle.left}px) scaleX(${
+                    dropletStyle.isMoving ? 1.08 : 1
+                  }) scaleY(${dropletStyle.isMoving ? 0.94 : 1})`,
+                  width: dropletStyle.width || 0,
+                  height: dropletStyle.height || 0,
+                  opacity: dropletStyle.opacity,
+                  transition:
+                    "transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.35s ease, height 0.35s ease, opacity 0.2s ease",
+                }}
+                className="absolute top-1 left-0 pointer-events-none rounded-full z-0 overflow-hidden"
+              >
+                {/* 1. Droplet Body with Water Refraction Gradient */}
+                <div className="w-full h-full rounded-full bg-gradient-to-b from-white via-white/95 to-orange-50/70 border border-black/[0.04] shadow-[0_8px_20px_-4px_rgba(242,101,34,0.3),0_2px_8px_-2px_rgba(15,18,25,0.08),inset_0_1.5px_2px_0_rgba(255,255,255,1),inset_0_-1.5px_2px_0_rgba(242,101,34,0.2)]" />
+
+                {/* 2. Top Specular Water Glare Arc */}
+                <div className="absolute top-1 inset-x-3 h-2 rounded-full bg-gradient-to-b from-white/90 to-transparent pointer-events-none" />
+
+                {/* 3. Fluid Droplet Center Caustic Bead */}
+                <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-3 h-1 rounded-full bg-[#F26522]/40 blur-[0.5px]" />
+              </div>
+
+              {/* Navigation Link Items */}
               {NAV_ITEMS.map((item) => {
                 const isActive =
                   currentPath === item.href ||
                   (item.href !== "/" && currentPath.startsWith(item.href));
+                const isHovered = hoveredHref === item.href;
+
                 return (
                   <Link
                     key={item.label}
                     to={item.href}
+                    ref={(el) => {
+                      if (el) itemRefs.current.set(item.href, el);
+                      else itemRefs.current.delete(item.href);
+                    }}
+                    onMouseEnter={() => handleItemHover(item.href)}
                     onClick={handleNavClick}
-                    className={`text-[13.5px] font-semibold px-4 py-1.5 rounded-full transition-all duration-300 relative ${
-                      isActive
-                        ? "bg-white text-[#F26522] shadow-[0_2px_8px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,1)]"
-                        : "text-gray-700 hover:text-gray-900 hover:bg-white/40"
+                    className={`relative z-10 text-[13.5px] font-semibold px-4 py-1.5 rounded-full transition-colors duration-300 ${
+                      isActive || isHovered ? "text-[#F26522]" : "text-gray-700 hover:text-gray-950"
                     }`}
                   >
                     {item.label}

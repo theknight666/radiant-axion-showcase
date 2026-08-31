@@ -40,7 +40,7 @@ class SoundEngine {
     }
     if (this.enabled) {
       this.initCtx();
-      this.playSwitch();
+      this.playDroplet();
     }
     this.notifyListeners();
     return this.enabled;
@@ -53,6 +53,37 @@ class SoundEngine {
 
   private notifyListeners() {
     this.listeners.forEach((cb) => cb(this.enabled));
+  }
+
+  /**
+   * Liquid water droplet plop / ripple sound
+   */
+  public playDroplet() {
+    if (!this.enabled) return;
+    this.initCtx();
+    if (!this.ctx) return;
+
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(540, now);
+      osc.frequency.exponentialRampToValueAtTime(1320, now + 0.04);
+      osc.frequency.exponentialRampToValueAtTime(1100, now + 0.08);
+
+      gain.gain.setValueAtTime(0.14, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.08);
+    } catch {
+      // Audio playback fails gracefully if blocked
+    }
   }
 
   /**
