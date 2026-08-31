@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   ArrowRight,
   Award,
@@ -15,6 +15,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter, CtaSection } from "@/components/site/sections";
 import { BadgeRow, OrangeButton, RollText } from "@/components/site/ui-bits";
 import { BookingModal } from "@/components/site/BookingModal";
+import { StudioRadar } from "@/components/site/StudioRadar";
 
 export const Route = createFileRoute("/agency")({
   head: () => ({
@@ -84,28 +85,8 @@ const PILLARS = [
   },
 ];
 
-function useIndiaTime() {
-  const [time, setTime] = useState("");
-  useEffect(() => {
-    const tick = () =>
-      setTime(
-        new Intl.DateTimeFormat("en-IN", {
-          timeZone: "Asia/Kolkata",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        }).format(new Date()),
-      );
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
-  return time;
-}
-
 function AgencyPage() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const istTime = useIndiaTime();
 
   return (
     <main className="min-h-screen bg-[#EFEFEF] text-gray-900 selection:bg-[#F26522] selection:text-white">
@@ -140,7 +121,7 @@ function AgencyPage() {
             {PILLARS.map((p) => (
               <div
                 key={p.number}
-                className="p-8 rounded-[32px] bg-[#FAFAFA] border border-gray-200/80 flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-500 shadow-[0_15px_35px_-12px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)]"
+                className="p-8 rounded-[34px] bg-[#FAFAFC] border border-black/[0.04] flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-500 shadow-[0_15px_35px_-12px_rgba(15,18,25,0.06),inset_0_1px_1.5px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)]"
               >
                 <div>
                   <span className="text-[12px] font-bold tracking-[0.2em] text-[#F26522] bg-[#F26522]/10 px-3 py-1 rounded-full">
@@ -178,7 +159,7 @@ function AgencyPage() {
           {TEAM.map((member) => (
             <div
               key={member.name}
-              className="p-7 sm:p-8 rounded-[32px] bg-white border border-gray-200/90 shadow-[0_15px_35px_-12px_rgba(15,18,25,0.06),inset_0_1px_1px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)] hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between"
+              className="p-7 sm:p-8 rounded-[34px] bg-white border border-black/[0.04] shadow-[0_15px_35px_-12px_rgba(15,18,25,0.06),inset_0_1px_1.5px_rgba(255,255,255,1)] hover:shadow-[0_28px_65px_-15px_rgba(15,18,25,0.12)] hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
@@ -199,72 +180,10 @@ function AgencyPage() {
         </div>
       </section>
 
-      {/* Flagship Studios in India */}
-      <section className="bg-[#0E1015] text-white py-16 sm:py-24 px-5 sm:px-8 lg:px-12 relative overflow-hidden">
-        <div className="pointer-events-none absolute -top-32 -left-32 h-80 w-80 rounded-full bg-[#F26522]/20 blur-[100px]" />
-        <div className="max-w-[1440px] mx-auto relative z-10">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-7 h-7 rounded-full bg-white text-gray-900 text-[12px] font-bold flex items-center justify-center shadow-sm">
-              4
-            </span>
-            <span className="text-[12px] font-medium border border-white/20 rounded-full px-3.5 py-1 text-white/80 bg-white/5 backdrop-blur-md">
-              India Presence
-            </span>
-          </div>
-
-          <h2 className="text-[clamp(1.8rem,4.5vw,3.2rem)] font-medium leading-[1.1] tracking-[-0.02em] text-white mb-12">
-            Headquartered in India.
-            <br />
-            <span className="text-white/60">Executing for category leaders worldwide.</span>
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7">
-            {/* Bengaluru Flagship */}
-            <div className="p-8 sm:p-10 rounded-[36px] bg-white/5 border border-white/10 flex flex-col justify-between shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:-translate-y-1.5 transition-all duration-500">
-              <div>
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-[12px] font-bold uppercase tracking-wider text-[#F26522] bg-[#F26522]/15 px-3 py-1 rounded-full border border-[#F26522]/30">
-                    Flagship HQ & Tech Lab
-                  </span>
-                  <span className="flex items-center gap-1.5 text-[12px] text-white/80 bg-white/10 px-3.5 py-1 rounded-full">
-                    <Clock size={12} className="text-[#F26522]" />
-                    {istTime} Bengaluru (IST)
-                  </span>
-                </div>
-                <h3 className="text-[26px] font-bold text-white">Indiranagar, Bengaluru</h3>
-                <p className="mt-2 text-[14px] text-white/70">
-                  100 Feet Road, Indiranagar, Bengaluru, Karnataka 560038
-                </p>
-              </div>
-              <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-[13px] text-white/60">
-                <span>Data Infrastructure & CRO Labs</span>
-                <span className="text-[#F26522] font-semibold">bengaluru@axionis.agency</span>
-              </div>
-            </div>
-
-            {/* Mumbai Hub */}
-            <div className="p-8 sm:p-10 rounded-[36px] bg-white/5 border border-white/10 flex flex-col justify-between shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:-translate-y-1.5 transition-all duration-500">
-              <div>
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-[12px] font-bold uppercase tracking-wider text-[#F26522] bg-[#F26522]/15 px-3 py-1 rounded-full border border-[#F26522]/30">
-                    Media & Creative Studio
-                  </span>
-                  <span className="flex items-center gap-1.5 text-[12px] text-white/80 bg-white/10 px-3.5 py-1 rounded-full">
-                    <Clock size={12} className="text-[#F26522]" />
-                    {istTime} Mumbai (IST)
-                  </span>
-                </div>
-                <h3 className="text-[26px] font-bold text-white">Bandra Kurla Complex (BKC)</h3>
-                <p className="mt-2 text-[14px] text-white/70">
-                  BKC One, G Block, Bandra Kurla Complex, Mumbai, Maharashtra 400051
-                </p>
-              </div>
-              <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-[13px] text-white/60">
-                <span>Performance Media & Brand Scaling</span>
-                <span className="text-[#F26522] font-semibold">mumbai@axionis.agency</span>
-              </div>
-            </div>
-          </div>
+      {/* Interactive Studio Command Radar */}
+      <section className="bg-[#0A0B0E] py-14 sm:py-24 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <StudioRadar />
         </div>
       </section>
 

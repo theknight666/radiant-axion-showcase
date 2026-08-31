@@ -21,7 +21,11 @@ import { CaseStudyModal, type CaseStudyData } from "@/components/site/CaseStudyM
 import { RoiCalculator } from "@/components/site/RoiCalculator";
 import { GrowthArchitecture } from "@/components/site/GrowthArchitecture";
 import { ComparisonMatrix } from "@/components/site/ComparisonMatrix";
+import { FunnelSimulator } from "@/components/site/FunnelSimulator";
+import { StudioRadar } from "@/components/site/StudioRadar";
+import { TiltCard } from "@/components/site/TiltCard";
 import { RollText } from "@/components/site/ui-bits";
+import { soundEngine } from "@/lib/sound-fx";
 
 const ShaderStack = lazy(() => import("@/components/ShaderStack"));
 
@@ -159,6 +163,7 @@ function Index() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudyData | null>(null);
 
   const handlePartnerBadgeClick = () => {
+    soundEngine.playSuccessChime();
     toast.info("Axionis is a Tier-1 Certified Growth Partner across Meta, Google & Snowflake.", {
       description: "Audited every 6 months for data accuracy and media efficiency standards.",
     });
@@ -202,7 +207,10 @@ function Index() {
 
           <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 max-w-lg sm:max-w-none">
             <button
-              onClick={() => setIsBookingOpen(true)}
+              onClick={() => {
+                soundEngine.playClick();
+                setIsBookingOpen(true);
+              }}
               className={`group inline-flex items-center justify-between sm:justify-start gap-3 bg-[#F26522] hover:bg-[#e05a1a] text-white text-[14.5px] font-semibold rounded-full pl-7 pr-2.5 py-3 sm:py-2.5 shadow-[0_16px_32px_-6px_rgba(242,101,34,0.55),inset_0_1px_1.5px_rgba(255,255,255,0.45)] hover:shadow-[0_22px_44px_-6px_rgba(242,101,34,0.75)] hover:-translate-y-1 transition-all duration-500 ${EASE}`}
             >
               <RollText label="Start a project" />
@@ -326,115 +334,132 @@ function Index() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-5 sm:px-8 lg:px-12">
-            {/* Narrativ Card */}
-            <div
-              onClick={() => setSelectedCaseStudy(HOME_PROJECTS.narrativ)}
-              className="cursor-pointer group rounded-[38px] bg-white p-3.5 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.08),inset_0_1px_1.5px_rgba(255,255,255,1)] hover:shadow-[0_35px_75px_-15px_rgba(0,0,0,0.16)] hover:-translate-y-2 transition-all duration-500 border border-black/[0.04]"
-            >
-              <div className="relative aspect-[329/246] rounded-[30px] overflow-hidden bg-[#1a1d2e] group cursor-pointer shadow-inner">
-                <video
-                  src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260516_122702_390f5305-8719-41d5-ae80-d23ab3796c28.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold px-3 py-1 rounded-full">
-                  <Award size={12} className="text-[#F26522]" />
-                  Awwwards Site of the Month 2025
-                </div>
+            {/* Narrativ Card with 3D Tilt */}
+            <TiltCard maxTilt={5} scale={1.015}>
+              <div
+                onClick={() => {
+                  soundEngine.playModalWhoosh();
+                  setSelectedCaseStudy(HOME_PROJECTS.narrativ);
+                }}
+                className="cursor-pointer group rounded-[38px] bg-white p-3.5 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.08),inset_0_1px_1.5px_rgba(255,255,255,1)] hover:shadow-[0_35px_75px_-15px_rgba(0,0,0,0.16)] transition-all duration-500 border border-black/[0.04]"
+              >
+                <div className="relative aspect-[329/246] rounded-[30px] overflow-hidden bg-[#1a1d2e] group cursor-pointer shadow-inner">
+                  <video
+                    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260516_122702_390f5305-8719-41d5-ae80-d23ab3796c28.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold px-3 py-1 rounded-full">
+                    <Award size={12} className="text-[#F26522]" />
+                    Awwwards Site of the Month 2025
+                  </div>
 
-                <div className="absolute bottom-4 left-4 h-10 w-10 group-hover:w-[154px] bg-white/95 backdrop-blur-md rounded-full flex items-center overflow-hidden shadow-lg transition-all duration-300 ease-in-out">
-                  <span className="h-10 w-10 shrink-0 flex items-center justify-center">
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-gray-900 -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-in-out"
-                    >
-                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                    </svg>
-                  </span>
-                  <span className="text-[13px] font-bold text-gray-900 whitespace-nowrap pr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                    Learn more
-                  </span>
+                  <div className="absolute bottom-4 left-4 h-10 w-10 group-hover:w-[154px] bg-white/95 backdrop-blur-md rounded-full flex items-center overflow-hidden shadow-lg transition-all duration-300 ease-in-out">
+                    <span className="h-10 w-10 shrink-0 flex items-center justify-center">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-gray-900 -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-in-out"
+                      >
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                      </svg>
+                    </span>
+                    <span className="text-[13px] font-bold text-gray-900 whitespace-nowrap pr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                      Learn more
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-[19px] font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
+                      Narrativ
+                    </h3>
+                    <span className="text-[12px] font-semibold text-emerald-600 bg-emerald-500/10 px-3 py-1 rounded-full">
+                      +340% Pipeline Velocity
+                    </span>
+                  </div>
+                  <p className="text-[14px] text-gray-600 leading-relaxed mt-2">
+                    Winner of Site of the Month 2025 — an interactive WebGL showcase driving record
+                    contract velocity.
+                  </p>
                 </div>
               </div>
-              <div className="p-5">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-[19px] font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
-                    Narrativ
-                  </h3>
-                  <span className="text-[12px] font-semibold text-emerald-600 bg-emerald-500/10 px-3 py-1 rounded-full">
-                    +340% Pipeline Velocity
-                  </span>
-                </div>
-                <p className="text-[14px] text-gray-600 leading-relaxed mt-2">
-                  Winner of Site of the Month 2025 — an interactive WebGL showcase driving record
-                  contract velocity.
-                </p>
-              </div>
-            </div>
+            </TiltCard>
 
-            {/* Luminar Card */}
-            <div
-              onClick={() => setSelectedCaseStudy(HOME_PROJECTS.luminar)}
-              className="cursor-pointer group rounded-[38px] bg-white p-3.5 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.08),inset_0_1px_1.5px_rgba(255,255,255,1)] hover:shadow-[0_35px_75px_-15px_rgba(0,0,0,0.16)] hover:-translate-y-2 transition-all duration-500 border border-black/[0.04]"
-            >
-              <div className="relative aspect-[329/246] rounded-[30px] overflow-hidden bg-[#6b6b6b] group cursor-pointer shadow-inner">
-                <video
-                  src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260516_123323_f909c2b8-ff6c-4edf-882b-8ebcdbe389b5.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold px-3 py-1 rounded-full">
-                  <TrendingUp size={12} className="text-[#F26522]" />
-                  +180% Incremental Revenue
-                </div>
+            {/* Luminar Card with 3D Tilt */}
+            <TiltCard maxTilt={5} scale={1.015}>
+              <div
+                onClick={() => {
+                  soundEngine.playModalWhoosh();
+                  setSelectedCaseStudy(HOME_PROJECTS.luminar);
+                }}
+                className="cursor-pointer group rounded-[38px] bg-white p-3.5 shadow-[0_20px_45px_-12px_rgba(0,0,0,0.08),inset_0_1px_1.5px_rgba(255,255,255,1)] hover:shadow-[0_35px_75px_-15px_rgba(0,0,0,0.16)] transition-all duration-500 border border-black/[0.04]"
+              >
+                <div className="relative aspect-[329/246] rounded-[30px] overflow-hidden bg-[#6b6b6b] group cursor-pointer shadow-inner">
+                  <video
+                    src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260516_123323_f909c2b8-ff6c-4edf-882b-8ebcdbe389b5.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold px-3 py-1 rounded-full">
+                    <TrendingUp size={12} className="text-[#F26522]" />
+                    +180% Incremental Revenue
+                  </div>
 
-                <div className="absolute bottom-4 left-4 h-10 w-10 group-hover:w-[172px] bg-gray-900/95 backdrop-blur-md rounded-full flex items-center overflow-hidden shadow-lg transition-all duration-300 ease-in-out">
-                  <span className="h-10 w-10 shrink-0 flex items-center justify-center">
-                    <ArrowRight
-                      size={15}
-                      className="text-white -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-in-out"
-                    />
-                  </span>
-                  <span className="text-[13px] font-bold text-white whitespace-nowrap pr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                    View case study
-                  </span>
+                  <div className="absolute bottom-4 left-4 h-10 w-10 group-hover:w-[172px] bg-gray-900/95 backdrop-blur-md rounded-full flex items-center overflow-hidden shadow-lg transition-all duration-300 ease-in-out">
+                    <span className="h-10 w-10 shrink-0 flex items-center justify-center">
+                      <ArrowRight
+                        size={15}
+                        className="text-white -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-in-out"
+                      />
+                    </span>
+                    <span className="text-[13px] font-bold text-white whitespace-nowrap pr-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                      View case study
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-[19px] font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
+                      Luminar
+                    </h3>
+                    <span className="text-[12px] font-semibold text-emerald-600 bg-emerald-500/10 px-3 py-1 rounded-full">
+                      -38% Blended CAC
+                    </span>
+                  </div>
+                  <p className="text-[14px] text-gray-600 leading-relaxed mt-2">
+                    Transforming a legacy multi-step checkout into a frictionless headless luxury
+                    brand engine.
+                  </p>
                 </div>
               </div>
-              <div className="p-5">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-[19px] font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
-                    Luminar
-                  </h3>
-                  <span className="text-[12px] font-semibold text-emerald-600 bg-emerald-500/10 px-3 py-1 rounded-full">
-                    -38% Blended CAC
-                  </span>
-                </div>
-                <p className="text-[14px] text-gray-600 leading-relaxed mt-2">
-                  Transforming a legacy multi-step checkout into a frictionless headless luxury
-                  brand engine.
-                </p>
-              </div>
-            </div>
+            </TiltCard>
           </div>
         </div>
       </section>
 
-      {/* INTERACTIVE ROI SIMULATOR */}
+      {/* INTERACTIVE GROWTH FUNNEL SIMULATOR */}
       <section className="bg-white py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <FunnelSimulator onBookCall={() => setIsBookingOpen(true)} />
+        </div>
+      </section>
+
+      {/* INTERACTIVE ROI SIMULATOR */}
+      <section className="bg-[#F4F4F6] py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-12">
         <div className="max-w-[1440px] mx-auto">
           <RoiCalculator onBookCall={() => setIsBookingOpen(true)} />
         </div>
@@ -460,6 +485,13 @@ function Index() {
       <section className="bg-white py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-12">
         <div className="max-w-[1440px] mx-auto">
           <ComparisonMatrix />
+        </div>
+      </section>
+
+      {/* LIVE STUDIO COMMAND RADAR */}
+      <section className="bg-[#0A0B0E] py-12 sm:py-16 lg:py-24 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <StudioRadar />
         </div>
       </section>
 
